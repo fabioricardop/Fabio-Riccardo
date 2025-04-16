@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fábio Riccardo</title>
+  <title>Fábio Riccardo | Portfólio</title>
+  <meta name="description" content="Portfólio de Fábio Riccardo: criador de conteúdo, pós-produtor e especialista em Inteligência Artificial aplicada à comunicação e produtividade." />
+  <meta name="keywords" content="Fábio Riccardo, fabioriccardo, inteligência artificial, conteúdo digital, pós-produção, marketing, portfólio" />
+  <meta name="author" content="Fábio Riccardo" />
+  <meta property="og:title" content="Fábio Riccardo | Portfólio" />
+  <meta property="og:description" content="Conheça o trabalho de Fábio Riccardo, especialista em IA aplicada, pós-produção e comunicação criativa." />
+  <meta property="og:image" content="foto.jpeg" />
+  <meta property="og:url" content="https://www.instagram.com/fabio.riccardop" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     * {
       margin: 0;
@@ -23,7 +31,7 @@
     }
 
     .title {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       font-weight: bold;
       position: relative;
       display: inline-block;
@@ -42,7 +50,7 @@
 
     h2 {
       margin-top: 1.5rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: normal;
       border-bottom: 3px solid #ccc;
       padding-bottom: 8px;
@@ -102,13 +110,10 @@
     }
 
     .features {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       margin-top: 2rem;
-    }
-
-    .feature-box {
       text-align: center;
     }
 
@@ -129,10 +134,47 @@
       text-align: center;
     }
 
-    @media(min-width: 600px) {
+    .insta-banner {
+      background-color: #fff;
+      border: 2px solid #e0e0e0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .insta-banner:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .insta-banner-text {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .insta-banner a {
+      background-color: #dd2a7b;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .insta-banner a:hover {
+      background-color: #c3226b;
+    }
+
+    @media(min-width: 768px) {
       .features {
-        flex-direction: row;
-        justify-content: space-between;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: left;
       }
     }
   </style>
@@ -155,7 +197,7 @@
   </section>
 
   <div class="photo">
-    <img src="foto.jpeg" alt="Fábio Riccardo no microfone" />
+    <img src="foto.jpeg" alt="Fábio Riccardo apresentando conteúdo com microfone em preto e branco" />
   </div>
 
   <section class="features">
@@ -172,9 +214,7 @@
       <p>Desde pequeno já se aventurou em diversos negócios desde da engenharia mecânica à publicidade.</p>
     </div>
   </section>
- <div class="photo">
-    <img src="foto2.jpg" alt="Fábio Riccardo sorrindo" />
-  </div>
+
   <section>
     <p>A tecnologia só faz sentido quando <strong>simplifica a vida real.</strong></p>
     <p>Trabalho todos os dias conectando projetos públicos, comunicação criativa e ferramentas de <strong>Inteligência Artificial que ajudam pessoas de verdade.</strong></p>
@@ -182,8 +222,11 @@
     <p><strong>Ferramentas que economizam tempo, dinheiro e energia</strong> pra quem empreende, trabalha ou quer crescer.</p>
   </section>
 
- 
+  <div class="photo">
+    <img src="foto2.jpg" alt="Retrato de Fábio Riccardo sorrindo, com camiseta da Seus Films" />
+  </div>
 
   <p class="quote">“Me segue e vem pro time de quem usa IA com inteligência.”</p>
+
 </body>
 </html>

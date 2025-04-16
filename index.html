@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fábio Riccardo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Georgia', serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #222;
+      padding: 16px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    .title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+    }
+
+    .title::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 6px;
+      background-color: #fdd835;
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+
+    h2 {
+      margin-top: 1.5rem;
+      font-size: 2rem;
+      font-weight: normal;
+      border-bottom: 3px solid #ccc;
+      padding-bottom: 8px;
+    }
+
+    nav {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-around;
+      background-color: #eee;
+      padding: 0.5rem;
+      border-bottom: 4px solid #333;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav a::before, nav a::after {
+      content: '•';
+      margin: 0 8px;
+      color: #999;
+    }
+
+    nav a:first-child::before {
+      content: '';
+      margin: 0;
+    }
+
+    nav a:last-child::after {
+      content: '';
+      margin: 0;
+    }
+
+    section {
+      margin-top: 2rem;
+    }
+
+    section p {
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    .photo {
+      margin-top: 2rem;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-box {
+      text-align: center;
+    }
+
+    .feature-box h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .feature-box p {
+      margin-top: 0.3rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .quote {
+      margin-top: 1.5rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    @media(min-width: 600px) {
+      .features {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">RICCARDO</div>
+    <h2>Quem é Fabio Riccardo?</h2>
+  </header>
+
+  <nav>
+    <a href="#">Links</a>
+    <a href="#">Ebooks</a>
+    <a href="#">Dicas de IA</a>
+  </nav>
+
+  <section>
+    <p>Fábio Riccardo é criador de conteúdo e responsável pela comunicação de projetos da secretaria de esportes da Prefeitura de São Paulo.</p>
+    <p>Compartilha dicas práticas de Inteligência Artificial aplicadas ao dia a dia de empreendedores e profissionais.</p>
+  </section>
+
+  <div class="photo">
+    <img src="foto.png" alt="Fábio Riccardo no microfone" />
+  </div>
+
+  <section class="features">
+    <div class="feature-box">
+      <h3>Pós-produtor</h3>
+      <p>A mais de <strong>5 anos</strong> no mercado audiovisual.</p>
+    </div>
+    <div class="feature-box">
+      <h3>Autodidata</h3>
+      <p>Desenvolvimento e raciocínio rápido no aprendizado.</p>
+    </div>
+    <div class="feature-box">
+      <h3>Empreendedor</h3>
+      <p>Desde pequeno já se aventurou em diversos negócios desde da engenharia mecânica à publicidade.</p>
+    </div>
+  </section>
+ <div class="photo">
+    <img src="foto2.jpg" alt="Fábio Riccardo sorrindo" />
+  </div>
+  <section>
+    <p>A tecnologia só faz sentido quando <strong>simplifica a vida real.</strong></p>
+    <p>Trabalho todos os dias conectando projetos públicos, comunicação criativa e ferramentas de <strong>Inteligência Artificial que ajudam pessoas de verdade.</strong></p>
+    <p><strong>Não falo de futuro distante. Falo do agora.</strong></p>
+    <p><strong>Ferramentas que economizam tempo, dinheiro e energia</strong> pra quem empreende, trabalha ou quer crescer.</p>
+  </section>
+
+ 
+
+  <p class="quote">“Me segue e vem pro time de quem usa IA com inteligência.”</p>
+</body>
+</html>

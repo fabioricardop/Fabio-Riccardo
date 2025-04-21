@@ -6,11 +6,20 @@
     <title>A Última Revolução – Ebook de IA</title>
     <meta name="description" content="Destrave o poder da Inteligência Artificial no seu dia a dia com o ebook A Última Revolução. Preço especial de lançamento por apenas R$ 19,90." />
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+  <style>
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-in-out;
+}
+</style>
+</head>
   <body class="font-sans bg-[#0D0D0D] text-gray-100 scroll-smooth">
 
     <!-- Hero -->
-    <header class="relative isolate overflow-hidden">
+    <header class="relative isolate overflow-hidden animate-fade-in">
       <div class="absolute inset-0 -z-10 bg-gradient-to-tr from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] blur-2xl"></div>
       <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
         <div>
@@ -18,7 +27,10 @@
             IA não vai roubar seu emprego.<br /><span class="text-[#FFD445]">Quem domina IA primeiro</span> vai.
           </h1>
           <p class="mt-6 text-lg md:text-xl text-gray-300">Aprenda a usar Inteligência Artificial hoje – antes que o seu concorrente faça.</p>
-          <a href="#checkout" class="inline-block mt-8 rounded-xl bg-[#FFD445] px-8 py-4 text-lg font-semibold text-[#0D0D0D] shadow-lg hover:bg-[#FFE066] transition">Quero meu exemplar por R$ 19,90</a>
+          <p class="mt-6 text-center text-[#FFD445] font-extrabold text-3xl md:text-4xl bg-[#0D0D0D] px-4 py-2 rounded-xl border-2 border-red-600 inline-block animate-pulse">
+  Promoção por tempo limitado: <span id="hero-timer" class="inline-block font-mono">40:00</span>
+</p>
+          <a href="#checkout" class="inline-block mt-6 rounded-xl bg-[#FFD445] px-8 py-4 text-lg font-semibold text-[#0D0D0D] shadow-lg hover:bg-[#FFE066] transition">Quero meu exemplar por R$ 19,90</a>
         </div>
         <div class="mx-auto">
           <img src="A_3D-rendered_digital_mockup_image_displays_three_.png" alt="Mockup do livro A Última Revolução" class="w-full max-w-xs md:max-w-sm drop-shadow-2xl" />
@@ -27,108 +39,112 @@
     </header>
 
     <!-- Sobre o ebook -->
-    <section class="bg-[#141414] py-20">
-      <div class="max-w-5xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-6 text-[#2ECC71]">Sobre o ebook</h2>
-        <p class="text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">“A Última Revolução” foi escrito para ser tão visual quanto didático. Cada capítulo traz <span class="text-[#FFD445] font-medium">ilustrações exclusivas</span> que simplificam conceitos complexos de IA e deixam o aprendizado mais leve. A linguagem é direta e acessível — sem perder profundidade — para que iniciantes e profissionais consigam aplicar o conteúdo imediatamente.</p>
-        <div class="grid md:grid-cols-3 gap-6 text-left">
-          <div class="bg-[#111111]/80 p-6 rounded-2xl">
-            <h3 class="font-semibold text-[#FFD445] mb-2">Ilustrações didáticas</h3>
-            <p class="text-gray-300">Diagramas e artes explicativas em todos os capítulos para fixar o aprendizado.</p>
-          </div>
-          <div class="bg-[#111111]/80 p-6 rounded-2xl">
-            <h3 class="font-semibold text-[#FFD445] mb-2">Linguagem simplificada</h3>
-            <p class="text-gray-300">Português claro — sem jargão — mas com exemplos avançados.</p>
-          </div>
-          <div class="bg-[#111111]/80 p-6 rounded-2xl">
-            <h3 class="font-semibold text-[#FFD445] mb-2">Aplicação prática</h3>
-            <p class="text-gray-300">Checklists e prompts prontos para usar na próxima hora.</p>
-          </div>
-        </div>
+<section class="bg-[#141414] py-20">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6 text-[#2ECC71]">Sobre o ebook</h2>
+    <p class="text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+      “A Última Revolução” foi escrito para ser tão visual quanto didático. Cada capítulo traz <span class="text-[#FFD445] font-medium">ilustrações exclusivas</span> que simplificam conceitos complexos de IA e deixam o aprendizado mais leve. A linguagem é direta e acessível — sem perder profundidade — para que iniciantes e profissionais consigam aplicar o conteúdo imediatamente.
+    </p>
+    <div class="grid md:grid-cols-3 gap-6 text-left">
+      <div class="bg-[#111111]/80 p-6 rounded-2xl">
+        <h3 class="font-semibold text-[#FFD445] mb-2 flex items-center gap-2"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 text-[#FFD445]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9.75 17L15 12.75 9.75 8.5M6 12.75h13.5'/></svg>Ilustrações didáticas</h3>
+        <p class="text-gray-300">Diagramas e artes explicativas em todos os capítulos para fixar o aprendizado.</p>
       </div>
-    </section>
+      <div class="bg-[#111111]/80 p-6 rounded-2xl">
+        <h3 class="font-semibold text-[#FFD445] mb-2 flex items-center gap-2"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 text-[#FFD445]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 16h8M8 12h8m-6 4v-8m0 0h4m-4 0H8'/></svg>Linguagem simplificada</h3>
+        <p class="text-gray-300">Português claro — sem jargão — mas com exemplos avançados.</p>
+      </div>
+      <div class="bg-[#111111]/80 p-6 rounded-2xl">
+        <h3 class="font-semibold text-[#FFD445] mb-2 flex items-center gap-2"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 text-[#FFD445]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg>Aplicação prática</h3>
+        <p class="text-gray-300">Checklists e prompts prontos para usar na próxima hora.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Por que importa -->
-    <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
-      <div>
-        <h2 class="text-3xl font-bold mb-4 text-[#2ECC71]">Por que “A Última Revolução” importa?</h2>
-        <ul class="space-y-3 list-disc list-inside text-gray-300">
-          <li>2024 foi o ano em que IA saiu do laboratório e entrou na sua planilha.</li>
-          <li>Ferramentas como ChatGPT, Midjourney e Suno nivelaram o campo de batalha.</li>
-          <li>Apenas quem entende IA vai se manter relevante.</li>
-          <li>Conhecimento condensado por menos que um café grande.</li>
-        </ul>
-      </div>
-      <div class="bg-[#111111]/80 rounded-2xl p-6 shadow-inner border border-[#222]">
-        <h3 class="text-xl font-semibold mb-3 text-[#FFD445]">O que você recebe:</h3>
-        <ol class="space-y-2 list-decimal list-inside">
-          <li><strong>As 4 Grandes Revoluções</strong> – Contexto histórico para entender a disrupção da IA.</li>
-          <li><strong>Surface AI × Deep AI</strong> – Saia da camada superficial e vá para o estratégico.</li>
-          <li><strong>Profissões em Extinção & Carreiras Emergentes</strong> – Prepare‑se para o mercado que vem aí.</li>
-          <li><strong>Engenharia de Prompts na Prática</strong> – 5 passos + 10 comparativos real x ideal.</li>
-        </ol>
-      </div>
-    </section>
+<!-- Por que importa -->
+<section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
+  <div>
+    <h2 class="text-3xl font-bold mb-4 text-[#2ECC71]">Por que “A Última Revolução” importa?</h2>
+    <ul class="space-y-3 list-disc list-inside text-gray-300">
+      <li>2024 foi o ano em que IA saiu do laboratório e entrou na sua planilha.</li>
+      <li>Ferramentas como ChatGPT, Midjourney e Suno nivelaram o campo de batalha.</li>
+      <li>Apenas quem entende IA vai se manter relevante.</li>
+      <li>Conhecimento condensado por menos que um café grande.</li>
+    </ul>
+  </div>
+  <div class="bg-[#111111]/80 rounded-2xl p-6 shadow-inner border border-[#222]">
+    <h3 class="text-xl font-semibold mb-3 text-[#FFD445]">O que você recebe:</h3>
+    <ol class="space-y-2 list-decimal list-inside">
+      <li><strong>As 4 Grandes Revoluções</strong> – Contexto histórico para entender a disrupção da IA.</li>
+      <li><strong>Surface AI × Deep AI</strong> – Saia da camada superficial e vá para o estratégico.</li>
+      <li><strong>Profissões em Extinção & Carreiras Emergentes</strong> – Prepare‑se para o mercado que vem aí.</li>
+      <li><strong>Engenharia de Prompts na Prática</strong> – 5 passos + 10 comparativos real x ideal.</li>
+    </ol>
+  </div>
+</section>
 
-    <!-- Para quem é -->
-    <section class="bg-[#1A1A1A] py-20">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12 text-[#2ECC71]">Para quem é este ebook?</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="p-6 bg-[#111111]/80 rounded-2xl">
-            <h3 class="font-semibold mb-2 text-[#FFD445]">Criadores de Conteúdo</h3>
-            <p class="text-gray-300">Transforme ideias em posts virais — sem travar no branco.</p>
-          </div>
-          <div class="p-6 bg-[#111111]/80 rounded-2xl">
-            <h3 class="font-semibold mb-2 text-[#FFD445]">Profissionais de Marketing</h3>
-            <p class="text-gray-300">Multiplique ROI otimizando campanhas com IA.</p>
-          </div>
-          <div class="p-6 bg-[#111111]/80 rounded-2xl">
-            <h3 class="font-semibold mb-2 text-[#FFD445]">Empreendedores</h3>
-            <p class="text-gray-300">Automatize processos e foque em crescimento.</p>
-          </div>
-          <div class="p-6 bg-[#111111]/80 rounded-2xl">
-            <h3 class="font-semibold mb-2 text-[#FFD445]">Curiosos Sem Background Técnico</h3>
-            <p class="text-gray-300">Domine IA em português claro — zero código.</p>
-          </div>
-        </div>
+<!-- Para quem é -->
+<section class="bg-[#1A1A1A] py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-[#2ECC71]">Para quem é este ebook?</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="p-6 bg-[#111111]/80 rounded-2xl">
+        <h3 class="font-semibold mb-2 text-[#FFD445]">Criadores de Conteúdo</h3>
+        <p class="text-gray-300">Transforme ideias em posts virais — sem travar no branco.</p>
       </div>
-    </section>
+      <div class="p-6 bg-[#111111]/80 rounded-2xl">
+        <h3 class="font-semibold mb-2 text-[#FFD445]">Profissionais de Marketing</h3>
+        <p class="text-gray-300">Multiplique ROI otimizando campanhas com IA.</p>
+      </div>
+      <div class="p-6 bg-[#111111]/80 rounded-2xl">
+        <h3 class="font-semibold mb-2 text-[#FFD445]">Empreendedores</h3>
+        <p class="text-gray-300">Automatize processos e foque em crescimento.</p>
+      </div>
+      <div class="p-6 bg-[#111111]/80 rounded-2xl">
+        <h3 class="font-semibold mb-2 text-[#FFD445]">Curiosos Sem Background Técnico</h3>
+        <p class="text-gray-300">Domine IA em português claro — zero código.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Sobre o autor -->
-    <section class="bg-[#0D0D0D] py-20">
-      <div class="max-w-xl mx-auto px-6 text-center">
-        <img src="autor.jpg" alt="Foto de Fabio Riccardo" class="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-[#FFD445]" />
-        <h2 class="text-3xl font-bold mb-2 text-[#2ECC71]">Sobre o autor</h2>
-        <p class="text-gray-300 leading-relaxed">
-          <strong>Fabio Riccardo</strong> é comunicador, estrategista digital e o cara que faz a IA trabalhar para você. Responsável por campanhas da Prefeitura de São Paulo, prova todos os dias que resultado fala mais alto que diploma.
-        </p>
-      </div>
-    </section>
+<!-- Sobre o autor -->
+<section class="bg-[#0D0D0D] py-20">
+  <div class="max-w-xl mx-auto px-6 text-center">
+    <img src="autor.jpg" alt="Foto de Fabio Riccardo" class="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-[#FFD445]" />
+    <h2 class="text-3xl font-bold mb-2 text-[#2ECC71]">Sobre o autor</h2>
+    <p class="text-gray-300 leading-relaxed">
+      <strong>Fabio Riccardo</strong> é comunicador, estrategista digital e o cara que faz a IA trabalhar para você. Responsável por campanhas da Prefeitura de São Paulo, prova todos os dias que resultado fala mais alto que diploma.
+    </p>
+  </div>
+</section>
 
-    <!-- Garantia & FAQ -->
-    <section class="max-w-5xl mx-auto px-6 py-20">
-      <div class="bg-[#111111]/80 rounded-2xl p-8 shadow-lg">
-        <h2 class="text-2xl font-bold mb-4 text-center text-[#FFD445]">Garantia 7 Dias</h2>
-        <p class="text-gray-200 text-center mb-8">Leu, aplicou e não sentiu evolução? Dinheiro de volta. Simples assim.</p>
-        <div class="grid md:grid-cols-2 gap-6 text-gray-300">
-          <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Preciso saber programar?</h3><p>Não. Começamos do zero e subimos o nível gradualmente.</p></div>
-          <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Funciona no celular?</h3><p>Sim. Você pode acessar o conteúdo de qualquer dispositivo.</p></div>
-          <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Recebo algo físico?</h3><p>Não. É 100% digital para acesso imediato.</p></div>
-          <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Formas de pagamento?</h3><p>Pix, cartão ou boleto – sem complicação.</p></div>
-        </div>
-      </div>
-    </section>
+<!-- Garantia & FAQ -->
+<section class="max-w-5xl mx-auto px-6 py-20">
+  <div class="bg-[#111111]/80 rounded-2xl p-8 shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center text-[#FFD445]">Garantia 7 Dias</h2>
+    <p class="text-gray-200 text-center mb-8">Leu, aplicou e não sentiu evolução? Dinheiro de volta. Simples assim.</p>
+    <div class="grid md:grid-cols-2 gap-6 text-gray-300">
+      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Preciso saber programar?</h3><p>Não. Começamos do zero e subimos o nível gradualmente.</p></div>
+      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Funciona no celular?</h3><p>Sim. Você pode acessar o conteúdo de qualquer dispositivo.</p></div>
+      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Recebo algo físico?</h3><p>Não. É 100% digital para acesso imediato.</p></div>
+      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Formas de pagamento?</h3><p>Pix, cartão ou boleto – sem complicação.</p></div>
+    </div>
+  </div>
+</section>
 
     <!-- CTA FINAL -->
     <section class="bg-[#FFD445] py-20">
       <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-extrabold mb-4 text-[#0D0D0D]">
+        <h2 id="preco-titulo" class="text-3xl font-extrabold mb-4 text-[#0D0D0D]">
           Última chance: de <span class="line-through opacity-70">R$ 60,00</span> por
           <span class="text-[#0D0D0D]">R$ 19,90</span>
         </h2>
-        <p class="mb-8 text-[#0D0D0D]">Garanta seu acesso agora com preço promocional por tempo limitado.</p>
-        <a href="#checkout" class="inline-block rounded-xl bg-[#0D0D0D] text-[#FFD445] font-semibold px-10 py-4 shadow-lg hover:bg-[#2C2C2C] transition">
+        <p id="timer-texto" class="mb-8 text-[#0D0D0D] text-2xl font-semibold">
+  Oferta válida por <span id="final-timer" class="inline-block text-4xl font-mono font-bold text-red-600 animate-pulse">40:00</span> minutos.
+</p>
+        <a id="botao-compra" href="#checkout" class="inline-block rounded-xl bg-[#0D0D0D] text-[#FFD445] font-semibold px-10 py-4 shadow-lg hover:bg-[#2C2C2C] transition">
           Comprar o ebook agora
         </a>
       </div>
@@ -138,5 +154,37 @@
     <footer class="py-10 text-center text-gray-500 text-sm bg-[#0D0D0D]">
       © 2025 Fabio Riccardo. Todos os direitos reservados.
     </footer>
+
+    <!-- Timer Script -->
+    <script>
+      let duration = 40 * 60; // 40 minutos em segundos
+      const heroTimer = document.getElementById('hero-timer');
+      const finalTimer = document.getElementById('final-timer');
+      const precoTitulo = document.getElementById('preco-titulo');
+      const timerTexto = document.getElementById('timer-texto');
+      const botaoCompra = document.getElementById('botao-compra');
+
+      function updateDisplay(minutes, seconds) {
+        const formatted = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        heroTimer.textContent = formatted;
+        finalTimer.textContent = formatted;
+      }
+
+      const countdown = setInterval(() => {
+        const minutes = Math.floor(duration / 60);
+        const seconds = duration % 60;
+        updateDisplay(minutes, seconds);
+        duration--;
+
+        if (duration < 0) {
+          clearInterval(countdown);
+          precoTitulo.innerHTML = 'O valor promocional expirou. Agora o ebook custa <span class="text-[#0D0D0D]">R$ 60,00</span>';
+          timerTexto.innerHTML = 'A oferta por R$ 19,90 não está mais disponível.';
+          botaoCompra.classList.add('opacity-50', 'pointer-events-none');
+          botaoCompra.textContent = 'Oferta encerrada';
+        }
+      }, 1000);
+    </script>
+
   </body>
 </html>

@@ -1,190 +1,424 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Última Revolução – Ebook de IA</title>
-    <meta name="description" content="Destrave o poder da Inteligência Artificial no seu dia a dia com o ebook A Última Revolução. Preço especial de lançamento por apenas R$ 19,90." />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Última Revolução: Domine a IA ou Seja Deixado Para Trás</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-@keyframes fade-in {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fade-in 1s ease-in-out;
-}
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #0D1117; /* Preto/Azul muito escuro, similar ao espaço ou noite */
+            --bg-secondary: #161B22; /* Um tom mais claro para seções ou cards */
+            --text-light: #E6EDF3; /* Branco suave para texto principal */
+            --text-medium: #B0BAC6; /* Cinza claro para texto secundário */
+            --text-dark: #2D333B; /* Para texto em botões claros */
+
+            /* Cores de Destaque - Inspiradas na capa e na sua preferência por cores vibrantes */
+            --accent-orange: #FF8C00; /* Laranja vibrante (da capa) */
+            --accent-orange-hover: #FFA500; /* Laranja mais claro para hover */
+            --accent-yellow: #FFD700; /* Amarelo/Dourado para destaques e urgência */
+            --accent-red: #F85149;    /* Vermelho para alertas e urgência do contador */
+            --accent-green: #28A745;  /* Verde para sucesso e garantias */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            overscroll-behavior-y: contain; /* Evita o "puxar para atualizar" */
+        }
+
+        /* Barra de Progresso */
+        #scroll-progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 10000; /* Acima de tudo */
+        }
+        #scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+            width: 0%;
+            border-radius: 0 2px 2px 0;
+            transition: width 0.1s ease-out;
+        }
+
+        .button-cta-main {
+            background-color: var(--accent-orange);
+            color: var(--bg-primary); /* Texto escuro para contraste */
+            font-weight: 800; /* Mais peso para o CTA principal */
+            padding: 1rem 2rem; /* Mais padding para destaque */
+            border-radius: 0.75rem; /* 12px */
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito mais elástico */
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3), 0 2px 6px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+        .button-cta-main:hover {
+            background-color: var(--accent-orange-hover);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(255, 165, 0, 0.4), 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .button-cta-main:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+
+        .countdown-block {
+            background-color: rgba(255,255,255,0.03); /* Fundo sutil */
+            border: 1px solid var(--accent-red); /* Borda vermelha para urgência */
+            padding: 10px; /* Reduzido para mobile */
+            border-radius: 8px;
+            min-width: 60px; /* Ajustado para mobile */
+            text-align: center;
+        }
+        .countdown-block span {
+            font-size: 1.8rem; /* Reduzido */
+            font-weight: 900; /* Bem destacado */
+            color: var(--accent-red);
+        }
+        .countdown-block p {
+            font-size: 0.65rem; /* Reduzido */
+            text-transform: uppercase;
+            color: var(--text-medium);
+            margin-top: 2px;
+        }
+
+        .icon-benefit {
+            font-size: 1.25rem; /* 20px */
+            margin-right: 0.75rem; /* 12px */
+            width: 28px;
+            text-align: center;
+            color: var(--accent-yellow); /* Ícones amarelos para destaque */
+        }
+
+        /* Animação de entrada suave */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .ebook-cover-hero {
+            border: 4px solid var(--accent-orange); /* Borda laranja forte */
+            box-shadow: 0 0 25px rgba(255, 140, 0, 0.4), 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease-out;
+        }
+         .ebook-cover-hero:hover {
+            transform: scale(1.02); /* Leve aumento no hover */
+        }
+        
+        .section-heading {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 900; /* Bem forte */
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+        @media (min-width: 768px) {
+            .section-heading {
+                font-size: 2.75rem; /* 44px */
+            }
+        }
+        .highlight-text {
+            color: var(--accent-yellow); /* Amarelo para palavras chave */
+        }
+        .urgent-text {
+            color: var(--accent-red);
+        }
+        .success-text {
+            color: var(--accent-green);
+        }
+
+        .card-offer {
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--accent-orange);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .image-section-style { /* Estilo para a imagem na seção de desafios/problema */
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 2px solid var(--accent-orange); /* Borda sutil laranja */
+            max-width: 450px; /* Limita a largura máxima da imagem */
+            width: 100%; /* Garante responsividade */
+            height: auto; /* Mantém a proporção */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
-  <body class="font-sans bg-[#0D0D0D] text-gray-100 scroll-smooth">
+<body>
 
-    <!-- Hero -->
-    <header class="relative isolate overflow-hidden animate-fade-in">
-      <div class="absolute inset-0 -z-10 bg-gradient-to-tr from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] blur-2xl"></div>
-      <div class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
-        <div>
-          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-            IA não vai roubar seu emprego.<br /><span class="text-[#FFD445]">Quem domina IA primeiro</span> vai.
-          </h1>
-          <p class="mt-6 text-lg md:text-xl text-gray-300">Aprenda a usar Inteligência Artificial hoje – antes que o seu concorrente faça.</p>
-          <p class="mt-6 text-center text-[#FFD445] font-extrabold text-3xl md:text-4xl bg-[#0D0D0D] px-4 py-2 rounded-xl border-2 border-red-600 inline-block animate-pulse">
-  Promoção por tempo limitado: <span id="hero-timer" class="inline-block font-mono">40:00</span>
-</p>
-          <a href="#checkout" class="inline-block mt-6 rounded-xl bg-[#FFD445] px-8 py-4 text-lg font-semibold text-[#0D0D0D] shadow-lg hover:bg-[#FFE066] transition">Quero meu exemplar por R$ 19,90</a>
+    <div id="scroll-progress-bar-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <section class="min-h-screen flex flex-col justify-center items-center text-center py-16 px-4 sm:px-6 relative overflow-hidden" style="background: radial-gradient(ellipse at bottom, var(--bg-secondary) 0%, var(--bg-primary) 70%);">
+        <div class="relative z-10 animate-on-scroll">
+            <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
+                 alt="Capa do E-book A Última Revolução"
+                 class="w-48 sm:w-56 md:w-64 mx-auto mb-8 rounded-lg ebook-cover-hero"
+                 onerror="this.onerror=null;this.src='https://placehold.co/250x350/0D1117/FF8C00?text=A+ÚLTIMA+REVOLUÇÃO';">
+
+            <p class="text-sm uppercase tracking-wider text-accent-orange mb-2 font-semibold" style="animation-delay: 0.1s;">O FUTURO CHEGOU. VOCÊ ESTÁ DENTRO OU FORA?</p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4" style="color: var(--text-light); animation-delay: 0.2s;">
+                A ÚLTIMA <span class="highlight-text">REVOLUÇÃO</span>
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto" style="color: var(--text-medium); animation-delay: 0.3s;">
+                A Inteligência Artificial está <strong class="highlight-text">reescrevendo as regras</strong>. Descubra como usar esse poder a seu favor AGORA ou arrisque se tornar obsoleto.
+            </p>
+
+            <div class="my-8" style="animation-delay: 0.4s;">
+                <p class="mb-3 text-md sm:text-lg font-medium" style="color: var(--text-medium);">Sua chance de sair na frente <strong class="urgent-text">TERMINA EM</strong>:</p>
+                <div id="countdown" class="flex justify-center gap-2 sm:gap-3">
+                    <div class="countdown-block"> <span id="days">00</span><p>Dias</p> </div>
+                    <div class="countdown-block"> <span id="hours">00</span><p>Horas</p> </div>
+                    <div class="countdown-block"> <span id="minutes">00</span><p>Min</p> </div>
+                    <div class="countdown-block"> <span id="seconds">00</span><p>Seg</p> </div>
+                </div>
+            </div>
+
+            <a href="#oferta" class="button-cta-main text-base sm:text-lg" style="animation-delay: 0.5s;">
+                <i class="fas fa-bolt mr-2"></i> QUERO DOMINAR A IA AGORA!
+            </a>
+            <p class="mt-4 text-xs" style="color: var(--text-medium); opacity:0.8; animation-delay: 0.6s;">(Oferta Exclusiva de Lançamento!)</p>
         </div>
-        <div class="mx-auto">
-          <img src="A_3D-rendered_digital_mockup_image_displays_three_.png" alt="Mockup do livro A Última Revolução" class="w-full max-w-xs md:max-w-sm drop-shadow-2xl" />
-        </div>
-      </div>
-    </header>
-
-    <!-- Sobre o ebook -->
-<section class="bg-[#141414] py-20">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold mb-6 text-[#2ECC71]">Sobre o ebook</h2>
-    <p class="text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-      “A Última Revolução” foi escrito para ser tão visual quanto didático. Cada capítulo traz <span class="text-[#FFD445] font-medium">ilustrações exclusivas</span> que simplificam conceitos complexos de IA e deixam o aprendizado mais leve. A linguagem é direta e acessível — sem perder profundidade — para que iniciantes e profissionais consigam aplicar o conteúdo imediatamente.
-    </p>
-    <div class="grid md:grid-cols-3 gap-6 text-left">
-      <div class="bg-[#111111]/80 p-6 rounded-2xl">
-        <h3 class="font-semibold text-[#FFD445] mb-2 flex items-center gap-2"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 text-[#FFD445]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9.75 17L15 12.75 9.75 8.5M6 12.75h13.5'/></svg>Ilustrações didáticas</h3>
-        <p class="text-gray-300">Diagramas e artes explicativas em todos os capítulos para fixar o aprendizado.</p>
-      </div>
-      <div class="bg-[#111111]/80 p-6 rounded-2xl">
-        <h3 class="font-semibold text-[#FFD445] mb-2 flex items-center gap-2"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 text-[#FFD445]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 16h8M8 12h8m-6 4v-8m0 0h4m-4 0H8'/></svg>Linguagem simplificada</h3>
-        <p class="text-gray-300">Português claro — sem jargão — mas com exemplos avançados.</p>
-      </div>
-      <div class="bg-[#111111]/80 p-6 rounded-2xl">
-        <h3 class="font-semibold text-[#FFD445] mb-2 flex items-center gap-2"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 text-[#FFD445]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg>Aplicação prática</h3>
-        <p class="text-gray-300">Checklists e prompts prontos para usar na próxima hora.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Por que importa -->
-<section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
-  <div>
-    <h2 class="text-3xl font-bold mb-4 text-[#2ECC71]">Por que “A Última Revolução” importa?</h2>
-    <ul class="space-y-3 list-disc list-inside text-gray-300">
-      <li>2024 foi o ano em que IA saiu do laboratório e entrou na sua planilha.</li>
-      <li>Ferramentas como ChatGPT, Midjourney e Suno nivelaram o campo de batalha.</li>
-      <li>Apenas quem entende IA vai se manter relevante.</li>
-      <li>Conhecimento condensado por menos que um café grande.</li>
-    </ul>
-  </div>
-  <div class="bg-[#111111]/80 rounded-2xl p-6 shadow-inner border border-[#222]">
-    <h3 class="text-xl font-semibold mb-3 text-[#FFD445]">O que você recebe:</h3>
-    <ol class="space-y-2 list-decimal list-inside">
-      <li><strong>As 4 Grandes Revoluções</strong> – Contexto histórico para entender a disrupção da IA.</li>
-      <li><strong>Surface AI × Deep AI</strong> – Saia da camada superficial e vá para o estratégico.</li>
-      <li><strong>Profissões em Extinção & Carreiras Emergentes</strong> – Prepare‑se para o mercado que vem aí.</li>
-      <li><strong>Engenharia de Prompts na Prática</strong> – 5 passos + 10 comparativos real x ideal.</li>
-    </ol>
-  </div>
-</section>
-
-<!-- Para quem é -->
-<section class="bg-[#1A1A1A] py-20">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12 text-[#2ECC71]">Para quem é este ebook?</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="p-6 bg-[#111111]/80 rounded-2xl">
-        <h3 class="font-semibold mb-2 text-[#FFD445]">Criadores de Conteúdo</h3>
-        <p class="text-gray-300">Transforme ideias em posts virais — sem travar no branco.</p>
-      </div>
-      <div class="p-6 bg-[#111111]/80 rounded-2xl">
-        <h3 class="font-semibold mb-2 text-[#FFD445]">Profissionais de Marketing</h3>
-        <p class="text-gray-300">Multiplique ROI otimizando campanhas com IA.</p>
-      </div>
-      <div class="p-6 bg-[#111111]/80 rounded-2xl">
-        <h3 class="font-semibold mb-2 text-[#FFD445]">Empreendedores</h3>
-        <p class="text-gray-300">Automatize processos e foque em crescimento.</p>
-      </div>
-      <div class="p-6 bg-[#111111]/80 rounded-2xl">
-        <h3 class="font-semibold mb-2 text-[#FFD445]">Curiosos Sem Background Técnico</h3>
-        <p class="text-gray-300">Domine IA em português claro — zero código.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Sobre o autor -->
-<section class="bg-[#0D0D0D] py-20">
-  <div class="max-w-xl mx-auto px-6 text-center">
-    <img src="autor.jpg" alt="Foto de Fabio Riccardo" class="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-[#FFD445]" />
-    <h2 class="text-3xl font-bold mb-2 text-[#2ECC71]">Sobre o autor</h2>
-    <p class="text-gray-300 leading-relaxed">
-      <strong>Fabio Riccardo</strong> é comunicador, estrategista digital e o cara que faz a IA trabalhar para você. Responsável por campanhas da Prefeitura de São Paulo, prova todos os dias que resultado fala mais alto que diploma.
-    </p>
-  </div>
-</section>
-
-<!-- Garantia & FAQ -->
-<section class="max-w-5xl mx-auto px-6 py-20">
-  <div class="bg-[#111111]/80 rounded-2xl p-8 shadow-lg">
-    <h2 class="text-2xl font-bold mb-4 text-center text-[#FFD445]">Garantia 7 Dias</h2>
-    <p class="text-gray-200 text-center mb-8">Leu, aplicou e não sentiu evolução? Dinheiro de volta. Simples assim.</p>
-    <div class="grid md:grid-cols-2 gap-6 text-gray-300">
-      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Preciso saber programar?</h3><p>Não. Começamos do zero e subimos o nível gradualmente.</p></div>
-      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Funciona no celular?</h3><p>Sim. Você pode acessar o conteúdo de qualquer dispositivo.</p></div>
-      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Recebo algo físico?</h3><p>Não. É 100% digital para acesso imediato.</p></div>
-      <div><h3 class="font-semibold mb-2 text-[#2ECC71]">Formas de pagamento?</h3><p>Pix, cartão ou boleto – sem complicação.</p></div>
-    </div>
-  </div>
-</section>
-
-    <!-- CTA FINAL -->
-    <section class="bg-[#FFD445] py-20">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 id="preco-titulo" class="text-3xl font-extrabold mb-4 text-[#0D0D0D]">
-          Última chance: de <span class="line-through opacity-70">R$ 60,00</span> por
-          <span class="text-[#0D0D0D]">R$ 19,90</span>
-        </h2>
-        <p id="timer-texto" class="mb-8 text-[#0D0D0D] text-2xl font-semibold">
-  Oferta válida por <span id="final-timer" class="inline-block text-4xl font-mono font-bold text-red-600 animate-pulse">40:00</span> minutos.
-</p>
-        <a id="botao-compra" href="#checkout" class="inline-block rounded-xl bg-[#0D0D0D] text-[#FFD445] font-semibold px-10 py-4 shadow-lg hover:bg-[#2C2C2C] transition">
-          Comprar o ebook agora
-        </a>
-      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 text-center text-gray-500 text-sm bg-[#0D0D0D]">
-      © 2025 Fabio Riccardo. Todos os direitos reservados.
+    <section class="py-16 md:py-20 bg-bg-primary">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 md:mb-16 animate-on-scroll">
+                <h2 class="section-heading mb-3">A IA Avança <span class="urgent-text">Rápido Demais</span>. Você Acompanha?</h2>
+                <p class="text-lg max-w-3xl mx-auto" style="color: var(--text-medium);">Profissões desaparecem, novas surgem. Quem não se adaptar, ficará para trás. <strong class="highlight-text">Não seja essa pessoa.</strong></p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="animate-on-scroll" style="animation-delay: 0.1s;">
+                    <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
+                         alt="Desafios da Inteligência Artificial no mercado" 
+                         class="image-section-style" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/450x315/0D1117/E6EDF3?text=Desafios+da+IA';">
+                </div>
+                <div class="space-y-5 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">Sinais de que você <span class="urgent-text">PRECISA</span> deste guia:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><i class="fas fa-exclamation-circle icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Sente que seu conhecimento está ficando <strong class="highlight-text">ultrapassado</strong>?</span></li>
+                        <li class="flex items-start"><i class="fas fa-question-circle icon-benefit"></i><span style="color: var(--text-medium);">Não sabe como a IA pode <strong class="highlight-text">realmente</strong> te ajudar na prática?</span></li>
+                        <li class="flex items-start"><i class="fas fa-clock icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Vê outros aproveitando oportunidades e tem medo de <strong class="highlight-text">perder o timing</strong>?</span></li>
+                        <li class="flex items-start"><i class="fas fa-lightbulb icon-benefit"></i><span style="color: var(--text-medium);">Quer <strong class="highlight-text">inovar</strong>, mas não sabe por onde começar com IA?</span></li>
+                    </ul>
+                    <p class="font-semibold text-lg pt-2" style="color: var(--text-light);">Se você se identificou, "A Última Revolução" é o <strong class="highlight-text">atalho inteligente</strong> que você procura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="ebook-details" class="py-16 md:py-20" style="background-color: var(--bg-secondary);">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="section-heading text-center mb-4 animate-on-scroll">Sua Chave Para <span class="highlight-text">Desvendar e Lucrar</span> com a IA:</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.1s;">"A ÚLTIMA REVOLUÇÃO" é o seu guia completo, direto ao ponto, para transformar a Inteligência Artificial em sua maior aliada estratégica.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1 space-y-5 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">O que Você Vai Dominar em Poucas Horas:</h3>
+                    <ul class="list-none space-y-4">
+                        <li class="flex items-start"><i class="fas fa-brain icon-benefit"></i><div><strong style="color: var(--text-light);">As 4 Revoluções que Moldaram o Mundo:</strong> E como a IA se compara (e supera!).</div></li>
+                        <li class="flex items-start"><i class="fas fa-layer-group icon-benefit"></i><div><strong style="color: var(--text-light);">Surface AI vs. Deep AI:</strong> Entenda a diferença crucial e onde você se encaixa.</div></li>
+                        <li class="flex items-start"><i class="fas fa-user-tie icon-benefit"></i><div><strong style="color: var(--text-light);">Impacto Real no Mercado:</strong> Profissões que somem, profissões que surgem. Esteja preparado!</div></li>
+                        <li class="flex items-start"><i class="fas fa-code icon-benefit"></i><div><strong style="color: var(--text-light);">Engenharia de Prompts na Prática:</strong> Fale a "língua" das IAs e extraia resultados PODEROSOS.</div></li>
+                        <li class="flex items-start"><i class="fas fa-rocket icon-benefit"></i><div><strong style="color: var(--text-light);">Lidere a Transformação:</strong> Não apenas acompanhe, mas seja um agente de mudança com IA.</div></li>
+                    </ul>
+                    <p class="font-bold text-lg pt-3" style="color: var(--text-light);">Chega de teoria. É hora de <strong class="highlight-text">ação e resultados.</strong></p>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
+                     <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
+                        alt="Detalhe do E-book A Última Revolução" 
+                        class="rounded-lg shadow-2xl transform transition-transform hover:scale-105 w-3/4 sm:w-2/3 md:w-full max-w-xs border-2 border-gray-700" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/300x420/161B22/FF8C00?text=Conteúdo+do+E-book';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta" class="py-16 md:py-24 bg-bg-primary text-white">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <i class="fas fa-star text-accent-yellow text-4xl mb-6 animate-on-scroll"></i>
+            <h2 class="section-heading mb-4 animate-on-scroll" style="animation-delay: 0.1s;">Sua <span class="highlight-text">Decisão Inteligente</span> Começa AGORA.</h2>
+            <p class="text-lg max-w-3xl mx-auto mb-10 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.2s;">
+                Por menos que um lanche, você acessa o conhecimento que pode <strong class="highlight-text">transformar sua carreira e visão de futuro</strong>. Não perca esta janela de oportunidade.
+            </p>
+            <div class="card-offer text-light p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl inline-block max-w-md mx-auto animate-on-scroll" style="animation-delay: 0.3s;">
+                <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-orange);">"A ÚLTIMA REVOLUÇÃO"</h3>
+                <p class="text-sm mb-4" style="color: var(--text-medium);">Seu Guia Essencial para a Era da Inteligência Artificial.</p>
+                
+                <p class="my-2" style="color: var(--text-medium);">De <span class="line-through">R$97,00</span> por APENAS:</p>
+                <p class="text-5xl sm:text-6xl font-black text-accent-orange mb-2">R$ 20<span class="text-2xl">,00</span></p>
+                <p class="text-sm font-semibold mb-6 success-text">(Pagamento ÚNICO. Acesso VITALÍCIO!)</p>
+
+                <ul class="text-left space-y-3 mb-8 text-sm sm:text-base" style="color: var(--text-medium);">
+                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Conteúdo prático e direto ao ponto.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Linguagem clara, sem enrolação.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Acesso imediato e para sempre.</span></li>
+                    <li class="flex items-start"><i class="fas fa-shield-alt icon-benefit highlight-text"></i><span><strong class="highlight-text">RISCO ZERO:</strong> 7 Dias de Garantia Total!</span></li>
+                </ul>
+                <button onclick="handlePurchase()" class="w-full button-cta-main text-lg shadow-lg">
+                    <i class="fas fa-lock mr-2"></i> QUERO MEU ACESSO IMEDIATO!
+                </button>
+                <p class="text-xs mt-4" style="color: var(--text-medium); opacity:0.8;">Compra 100% Segura. Entrega Digital na Hora.</p>
+            </div>
+             <p class="mt-10 text-base animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.4s;">
+                <strong class="urgent-text">ATENÇÃO:</strong> Este preço promocional é <strong class="highlight-text">exclusivo para esta página</strong> e pode subir a qualquer momento sem aviso prévio. Aja rápido!
+            </p>
+        </div>
+    </section>
+
+    <footer class="py-12 md:py-16 text-center bg-bg-primary border-t border-gray-700/20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <p class="text-sm" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
+            <p class="text-xs mt-2" style="color: var(--text-medium); opacity:0.7;">Invista em você. O futuro é agora.</p>
+        </div>
     </footer>
 
-    <!-- Timer Script -->
     <script>
-      let duration = 40 * 60; // 40 minutos em segundos
-      const heroTimer = document.getElementById('hero-timer');
-      const finalTimer = document.getElementById('final-timer');
-      const precoTitulo = document.getElementById('preco-titulo');
-      const timerTexto = document.getElementById('timer-texto');
-      const botaoCompra = document.getElementById('botao-compra');
-
-      function updateDisplay(minutes, seconds) {
-        const formatted = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        heroTimer.textContent = formatted;
-        finalTimer.textContent = formatted;
-      }
-
-      const countdown = setInterval(() => {
-        const minutes = Math.floor(duration / 60);
-        const seconds = duration % 60;
-        updateDisplay(minutes, seconds);
-        duration--;
-
-        if (duration < 0) {
-          clearInterval(countdown);
-          precoTitulo.innerHTML = 'O valor promocional expirou. Agora o ebook custa <span class="text-[#0D0D0D]">R$ 60,00</span>';
-          timerTexto.innerHTML = 'A oferta por R$ 19,90 não está mais disponível.';
-          botaoCompra.classList.add('opacity-50', 'pointer-events-none');
-          botaoCompra.textContent = 'Oferta encerrada';
+        // --- Barra de Progresso de Rolagem ---
+        const scrollProgressBar = document.getElementById('scroll-progress-bar');
+        function updateScrollProgress() {
+            if (!scrollProgressBar) return;
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            scrollProgressBar.style.width = scrollPercentage + '%';
         }
-      }, 1000);
+        window.addEventListener('scroll', updateScrollProgress);
+        window.addEventListener('resize', updateScrollProgress); // Atualiza no redimensionamento também
+
+        // --- Script do Contador Regressivo ---
+        function startCountdown(durationInHours) {
+            let endTime = new Date().getTime() + durationInHours * 60 * 60 * 1000;
+            const savedEndTimeKey = 'countdownEndTime_ebookAI_vConversion';
+            const savedEndTime = localStorage.getItem(savedEndTimeKey);
+
+            if (savedEndTime && parseInt(savedEndTime) > new Date().getTime()) {
+                endTime = parseInt(savedEndTime);
+            } else {
+                localStorage.setItem(savedEndTimeKey, endTime);
+            }
+
+            const countdownElement = document.getElementById('countdown');
+            if (!countdownElement) return; 
+
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const buyButton = document.querySelector('button[onclick="handlePurchase()"]');
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                let timeLeft = endTime - now;
+
+                if (timeLeft <= 0) {
+                    timeLeft = 0; 
+                    const countdownContainer = countdownElement.parentElement; // Pega o container do contador
+                    if (countdownContainer && countdownContainer.innerHTML.indexOf("OFERTA ENCERRADA") === -1) {
+                         countdownContainer.innerHTML = `<p class='text-xl font-bold p-3 urgent-text'>OFERTA ENCERRADA!</p>`;
+                    }
+                    localStorage.removeItem(savedEndTimeKey);
+                    if(buyButton && !buyButton.disabled) {
+                        buyButton.disabled = true;
+                        buyButton.innerHTML = '<i class="fas fa-times-circle mr-2"></i> OFERTA ESGOTADA';
+                        buyButton.style.backgroundColor = '#555'; 
+                        buyButton.style.color = '#aaa';
+                        buyButton.style.cursor = 'not-allowed';
+                        buyButton.classList.remove('button-cta-main'); // Remove a classe do botão principal
+                        buyButton.classList.add('bg-gray-600', 'text-gray-400', 'cursor-not-allowed', 'opacity-70'); // Adiciona classes de desabilitado
+                    }
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                if(daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if(hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if(minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if(secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer(); 
+            const timerInterval = setInterval(updateTimer, 1000);
+            if (timeLeft <=0 && timerInterval) clearInterval(timerInterval); // Limpa se já expirou no load
+        }
+
+        // --- Animação de Entrada ao Rolar ---
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+        const elementObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // observer.unobserve(entry.target); // Para animar apenas uma vez, descomente
+                }
+            });
+        }, { threshold: 0.1 }); // Aciona quando 10% do elemento está visível
+
+        elementsToAnimate.forEach(el => {
+            elementObserver.observe(el);
+        });
+
+        // --- Ano Atual no Rodapé ---
+        const currentYearEl = document.getElementById('currentYear');
+        if (currentYearEl) {
+            currentYearEl.textContent = new Date().getFullYear();
+        }
+        
+        // --- Smooth Scroll para Âncoras ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calcula a posição do elemento e ajusta por uma possível barra de progresso fixa
+                    const offsetTop = targetElement.offsetTop - (document.getElementById('scroll-progress-bar-container')?.offsetHeight || 0);
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // --- Função de Compra (Exemplo) ---
+        function handlePurchase() {
+            const checkoutUrl = 'https://SEU_LINK_DE_CHECKOUT_AQUI.com'; // SUBSTITUA PELO SEU LINK REAL
+            alert('Você será redirecionado para o pagamento. (Substitua este alerta pela integração real)');
+            // window.location.href = checkoutUrl; // Descomente para redirecionar de verdade
+            console.log("Botão de compra clicado. URL (exemplo):", checkoutUrl);
+        }
+
+        // --- Inicializar ---
+        window.onload = function() {
+            startCountdown(12); // Contador para 12 horas (ajuste conforme sua estratégia)
+            updateScrollProgress(); 
+            // Garante que elementos visíveis no load inicial sejam animados
+            elementsToAnimate.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {
+                    el.classList.add('is-visible');
+                }
+            });
+        };
     </script>
 
-  </body>
+</body>
 </html>

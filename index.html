@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Última Revolução: O Futuro da IA em Suas Mãos</title>
+    <title>A Última Revolução: Decifre a IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --bg-primary: #0D1117; 
-            --bg-secondary: #161B22; 
-            --text-light: #E6EDF3; 
-            --text-medium: #B0BAC6;
-            --text-dark: #0D1117; 
+            --bg-primary: #000000; 
+            --bg-secondary: #0A0A0A; 
+            --text-light: #E0E0E0; 
+            --text-medium: #A0A0A0;
+            --text-dark: #000000; 
 
             --accent-orange: #FF8C00; 
             --accent-orange-hover: #FFA500;
-            --accent-yellow: #FFD700; 
             --accent-red: #F85149;    
-            --accent-green: #28A745;
-            --accent-blue-matrix: #00AFFF; 
+            --accent-green-matrix: #00FF41; /* Verde Matrix Neon */
+            --accent-blue-matrix: #00AFFF; /* Azul Elétrico */
         }
 
         body {
@@ -37,12 +36,12 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background-color: rgba(0,0,0,0.3);
+            background-color: rgba(0,0,0,0.5);
             z-index: 10000;
         }
         #scroll-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue-matrix)); /* Ajustado para laranja e azul */
+            background: linear-gradient(90deg, var(--accent-green-matrix), var(--accent-blue-matrix));
             width: 0%;
             border-radius: 0 2px 2px 0;
             transition: width 0.1s ease-out;
@@ -52,58 +51,53 @@
             background-color: var(--accent-orange);
             color: var(--text-dark);
             font-weight: 800;
-            padding: 1rem 2rem;
-            border-radius: 0.75rem;
+            padding: 0.875rem 1.75rem; 
+            border-radius: 0.5rem; /* Bordas menos arredondadas para um look mais tech */
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.25), 0 2px 6px rgba(0,0,0,0.1); /* Sombra mais sutil */
-            border: 2px solid transparent;
-            animation: pulseButton 2.5s infinite ease-in-out; /* Nova animação para o botão */
+            letter-spacing: 1px;
+            transition: all 0.2s ease-out;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.4), 0 0 5px rgba(255, 140, 0, 0.6);
+            border: 1px solid var(--accent-orange-hover);
+            animation: pulseButtonMatrix 2.5s infinite ease-in-out;
         }
 
-        @keyframes pulseButton {
-            0% {
+        @keyframes pulseButtonMatrix {
+            0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 6px 20px rgba(255, 140, 0, 0.25), 0 2px 6px rgba(0,0,0,0.1);
+                box-shadow: 0 0 15px rgba(255, 140, 0, 0.4), 0 0 5px rgba(255, 140, 0, 0.6);
             }
             50% {
-                transform: scale(1.03); /* Leve aumento */
-                box-shadow: 0 8px 25px rgba(255, 140, 0, 0.35), 0 3px 8px rgba(0,0,0,0.15); /* Sombra um pouco mais intensa */
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 6px 20px rgba(255, 140, 0, 0.25), 0 2px 6px rgba(0,0,0,0.1);
+                transform: scale(1.04);
+                box-shadow: 0 0 25px rgba(255, 140, 0, 0.6), 0 0 10px rgba(255, 140, 0, 0.8);
             }
         }
 
         .button-cta-main:hover {
             background-color: var(--accent-orange-hover);
-            transform: translateY(-2px) scale(1.05); /* Aumento maior no hover */
-            animation-play-state: paused; /* Pausa a animação de pulso no hover para não conflitar */
+            transform: translateY(-2px) scale(1.06);
+            animation-play-state: paused;
         }
-        .button-cta-main:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
+        
         .countdown-block {
-            background-color: rgba(255,255,255,0.03);
-            border: 1px solid var(--accent-red);
-            padding: 10px;
-            border-radius: 8px;
-            min-width: 60px;
+            background-color: rgba(0, 255, 65, 0.05); /* Fundo verde matrix sutil */
+            border: 1px solid var(--accent-green-matrix);
+            padding: 8px; 
+            border-radius: 4px; /* Bordas mais retas */
+            min-width: 55px; 
             text-align: center;
         }
         .countdown-block span {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--accent-red);
+            font-size: 1.6rem; 
+            font-weight: 700; /* Menos bold para um look mais "código" */
+            color: var(--accent-green-matrix);
+            font-family: 'Courier New', Courier, monospace; /* Fonte monoespaçada */
         }
         .countdown-block p {
-            font-size: 0.65rem;
+            font-size: 0.55rem; 
             text-transform: uppercase;
             color: var(--text-medium);
             margin-top: 2px;
+            letter-spacing: 0.5px;
         }
 
         .icon-benefit {
@@ -111,12 +105,12 @@
             margin-right: 0.75rem;
             width: 28px;
             text-align: center;
-            color: var(--accent-orange); 
+            color: var(--accent-green-matrix); 
         }
 
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(25px); 
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .animate-on-scroll.is-visible {
@@ -125,65 +119,100 @@
         }
         
         .ebook-cover-hero {
-            /* Removida a borda e sombra chamativa, adicionada uma sombra mais sutil para profundidade */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease-out;
-            max-width: 300px; 
-            width: 80%; 
-            border-radius: 0.375rem; /* 6px - borda arredondada suave */
+            box-shadow: 0 0 20px rgba(0, 175, 255, 0.3), 0 0 10px rgba(0, 175, 255, 0.5); /* Sombra azul matrix */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            max-width: 200px; /* Ainda menor para mais espaço para texto */
+            width: 60%; 
+            border-radius: 4px; 
+            border: 1px solid var(--accent-blue-matrix);
         }
          .ebook-cover-hero:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(0, 175, 255, 0.5), 0 0 15px rgba(0, 175, 255, 0.7);
         }
         
         .section-heading {
-            font-size: 2.25rem; 
-            font-weight: 900; 
+            font-size: 2rem; 
+            font-weight: 800; /* Um pouco menos "black" */
             color: var(--text-light);
-            line-height: 1.2;
+            line-height: 1.25;
+            letter-spacing: 0.5px;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 640px) { 
             .section-heading {
-                font-size: 2.75rem; 
+                font-size: 2.25rem; 
             }
         }
+        @media (min-width: 768px) { 
+            .section-heading {
+                font-size: 2.5rem; /* Reduzido para não ser excessivo */
+            }
+        }
+
+        .hero-main-title {
+            font-size: 2.8rem; /* Maior */
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--accent-blue-matrix);
+        }
+        .hero-choice-text {
+            font-size: 1.25rem; 
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
+        @media (min-width: 640px) { 
+            .hero-main-title {
+                font-size: 4rem; 
+            }
+            .hero-choice-text {
+                font-size: 1.5rem; 
+            }
+        }
+         @media (min-width: 768px) { 
+            .hero-main-title {
+                font-size: 4.5rem; 
+            }
+             .hero-choice-text {
+                font-size: 1.75rem; 
+            }
+        }
+
         .highlight-blue { 
             color: var(--accent-blue-matrix); 
         }
-        .highlight-yellow { 
-             color: var(--accent-yellow);
-        }
-        .highlight-orange { /* Nova classe para destaques em laranja */
-            color: var(--accent-orange);
+        .highlight-green {
+            color: var(--accent-green-matrix);
         }
         .urgent-text {
             color: var(--accent-red);
         }
         .success-text {
-            color: var(--accent-green);
+            color: var(--accent-green-matrix); /* Verde matrix para sucesso */
         }
 
         .card-offer {
             background-color: var(--bg-secondary);
-            border: 1px solid rgba(255, 140, 0, 0.3); /* Borda mais sutil */
-            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            border: 1px solid var(--accent-green-matrix); 
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+            border-radius: 4px;
         }
         
         .stock-bar-container {
-            background-color: rgba(255,255,255,0.05); /* Mais sutil */
-            border-radius: 8px;
-            padding: 4px;
+            background-color: rgba(0, 255, 65, 0.05); 
+            border-radius: 6px;
+            padding: 3px;
             margin: 12px 0 20px; 
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(0, 255, 65, 0.2);
             overflow: hidden; 
         }
         .stock-bar {
-            background: linear-gradient(90deg, var(--accent-red) -50%, var(--accent-orange) 0%, var(--accent-red) 50%, var(--accent-orange) 100%); /* Laranja no lugar do amarelo */
+            background: linear-gradient(90deg, var(--accent-red) -50%, var(--accent-green-matrix) 0%, var(--accent-red) 50%, var(--accent-green-matrix) 100%); 
             background-size: 300% 100%; 
-            height: 12px; 
-            border-radius: 5px;
+            height: 10px; 
+            border-radius: 3px;
             transition: width 1.5s ease-out; 
-            animation: animatedGradient 3s ease infinite; 
+            animation: animatedGradient 2.5s ease infinite; 
         }
 
         @keyframes animatedGradient {
@@ -193,16 +222,16 @@
         }
 
         .stock-text {
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             color: var(--text-medium);
-            margin-top: 6px;
-            font-weight: 500;
+            margin-top: 5px;
+            font-weight: 400;
         }
 
         .security-seals {
             margin-top: 1.25rem; 
             padding-top: 0.75rem; 
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(0, 255, 65, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -210,22 +239,56 @@
             flex-wrap: wrap; 
         }
         .security-seals i {
-            font-size: 1.75rem; 
+            font-size: 1.6rem; 
             color: var(--text-medium);
-            opacity: 0.6; /* Opacidade um pouco menor para sutileza */
+            opacity: 0.5; 
             transition: opacity 0.2s ease, color 0.2s ease;
         }
         .security-seals i:hover {
-            opacity: 0.9;
-            color: var(--accent-orange); /* Laranja no hover dos selos */
+            opacity: 1;
+            color: var(--accent-green-matrix); 
         }
         .security-seals span { 
-            font-size: 0.7rem; 
+            font-size: 0.65rem; 
             color: var(--text-medium);
-            opacity: 0.6;
+            opacity: 0.5;
             display: block;
-            margin-top: 4px;
+            margin-top: 3px;
         }
+        
+        /* Efeito Digital Rain Sutil */
+        .hero-section-matrix::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.95) 100%),
+                repeating-linear-gradient(0deg, 
+                    transparent, 
+                    transparent 2px, 
+                    var(--accent-green-matrix) 2px, 
+                    var(--accent-green-matrix) 3px, 
+                    transparent 3px, 
+                    transparent 20px),
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 1px, 
+                    rgba(0, 50, 0, 0.2) 1px, /* Linhas verticais mais sutis */
+                    rgba(0, 50, 0, 0.2) 2px);
+            opacity: 0.07; /* Muito sutil */
+            z-index: 0;
+            pointer-events: none;
+            animation: matrixRainAnim 20s linear infinite;
+        }
+
+        @keyframes matrixRainAnim {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 0 -1000px, 0 0; } /* Anima o segundo gradiente (linhas horizontais) */
+        }
+
 
     </style>
 </head>
@@ -235,65 +298,67 @@
         <div id="scroll-progress-bar"></div>
     </div>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center py-16 px-4 sm:px-6 relative overflow-hidden" style="background: radial-gradient(ellipse at bottom, var(--bg-secondary) 0%, var(--bg-primary) 70%);">
-        <div class="relative z-10 animate-on-scroll w-full max-w-3xl">
-            <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-accent-orange mb-4" style="animation-delay: 0.1s;">O FUTURO CHEGOU.</p>
-            <p class="text-lg sm:text-xl md:text-2xl mb-6" style="color: var(--text-medium); animation-delay: 0.2s;">
-                Você está <strong class="highlight-blue">DENTRO</strong> ou <strong class="urgent-text">FORA</strong>?
-            </p>
+    <section class="hero-section-matrix flex flex-col justify-center items-center text-center py-8 px-4 relative overflow-hidden" 
+             style="min-height: 95vh; /* Altura para ocupar quase toda a tela inicial */">
+        <div class="relative z-10 animate-on-scroll w-full max-w-lg">
+            <p class="text-xl sm:text-2xl font-semibold text-accent-green-matrix mb-3 sm:mb-4 tracking-wider" style="animation-delay: 0.1s;">O FUTURO É UMA ESCOLHA.</p>
             
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black my-6" style="color: var(--text-light); animation-delay: 0.3s;">
+            <h1 class="hero-main-title font-black my-3 sm:my-4" style="color: var(--text-light); animation-delay: 0.2s;">
                 A ÚLTIMA <span class="highlight-blue">REVOLUÇÃO</span>
             </h1>
+
+            <p class="hero-choice-text mb-6 sm:mb-8" style="color: var(--text-medium); animation-delay: 0.3s;">
+                Decifre a Inteligência Artificial. <strong class="highlight-blue">Escolha seu lado.</strong>
+            </p>
             
             <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
                  alt="Capa do E-book A Última Revolução"
-                 class="mx-auto mt-8 mb-10 sm:mb-12 rounded-md ebook-cover-hero" /* rounded-md para borda suave */
+                 class="mx-auto mt-6 mb-6 sm:mt-8 sm:mb-8 rounded-md ebook-cover-hero"
                  style="animation-delay: 0.4s;"
-                 onerror="this.onerror=null;this.src='https://placehold.co/300x420/0D1117/FF8C00?text=A+ÚLTIMA+REVOLUÇÃO';">
+                 onerror="this.onerror=null;this.src='https://placehold.co/200x280/000000/00AFFF?text=A+REVOLUÇÃO';">
             
-             <a href="#oferta" class="button-cta-main text-base sm:text-lg" style="animation-delay: 0.5s;">
-                <i class="fas fa-bolt mr-2"></i> QUERO DOMINAR A IA AGORA!
-            </a>
-            <p class="mt-4 text-xs" style="color: var(--text-medium); opacity:0.8; animation-delay: 0.6s;">(Oferta Exclusiva de Lançamento!)</p>
+            <div class="mt-5 sm:mt-6" style="animation-delay: 0.5s;">
+                 <p class="mb-2 text-sm font-medium" style="color: var(--text-medium);">Acesso Imediato <strong class="urgent-text">TERMINA EM</strong>:</p>
+                <div id="countdown" class="flex justify-center gap-2 mb-5 sm:mb-6">
+                    <div class="countdown-block"> <span id="days">00</span><p>Dias</p> </div>
+                    <div class="countdown-block"> <span id="hours">00</span><p>Horas</p> </div>
+                    <div class="countdown-block"> <span id="minutes">00</span><p>Min</p> </div>
+                    <div class="countdown-block"> <span id="seconds">00</span><p>Seg</p> </div>
+                </div>
+                <a href="#oferta" class="button-cta-main text-sm sm:text-base"> 
+                    <i class="fas fa-code-branch mr-1 sm:mr-2"></i> ENTRAR NA MATRIX AGORA!
+                </a>
+                <p class="mt-3 text-xs" style="color: var(--text-medium); opacity:0.7;">(Vagas Limitadas Nesta Realidade)</p>
+            </div>
         </div>
     </section>
 
     <section class="py-16 md:py-20 bg-bg-primary">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12 md:mb-16 animate-on-scroll">
-                <h2 class="section-heading mb-3">A IA Avança <span class="urgent-text">Rápido Demais</span>. Você Acompanha?</h2>
+                <h2 class="section-heading mb-3">A Realidade se Transforma <span class="urgent-text">AGORA</span>.</h2>
                 <p class="text-lg sm:text-xl max-w-3xl mx-auto mt-4" style="color: var(--text-medium);">
-                    A Inteligência Artificial está <strong class="highlight-orange">reescrevendo as regras</strong>. Descubra como usar esse poder a seu favor AGORA ou arrisque se tornar obsoleto.
+                    A Inteligência Artificial não é mais ficção. É a força que <strong class="highlight-green">molda mercados e define o futuro</strong>. Ignorar é ficar para trás.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="animate-on-scroll" style="animation-delay: 0.1s;">
-                    <div class="my-8 text-center">
-                        <p class="mb-3 text-md sm:text-lg font-medium" style="color: var(--text-medium);">Sua chance de sair na frente <strong class="urgent-text">TERMINA EM</strong>:</p>
-                        <div id="countdown" class="flex justify-center gap-2 sm:gap-3">
-                            <div class="countdown-block"> <span id="days">00</span><p>Dias</p> </div>
-                            <div class="countdown-block"> <span id="hours">00</span><p>Horas</p> </div>
-                            <div class="countdown-block"> <span id="minutes">00</span><p>Min</p> </div>
-                            <div class="countdown-block"> <span id="seconds">00</span><p>Seg</p> </div>
-                        </div>
-                    </div>
-                     <img src="https://placehold.co/500x300/161B22/F85149?text=URGÊNCIA+DA+IA" 
-                         alt="Urgência em aprender sobre Inteligência Artificial" 
-                         class="rounded-lg shadow-xl mx-auto border-2 border-gray-700/50 w-full max-w-md" 
-                         onerror="this.onerror=null;this.src='https://placehold.co/500x300/0D1117/E6EDF3?text=IA+em+Ação';">
+                     <img src="https://placehold.co/500x300/0A0A0A/00FF41?text=CÓDIGO+DA+MUDANÇA" 
+                         alt="Representação da mudança causada pela IA" 
+                         class="rounded-md shadow-xl mx-auto border border-green-matrix/30 w-full max-w-md" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/500x300/000000/E0E0E0?text=IA+Impacto';">
 
                 </div>
                 <div class="space-y-5 animate-on-scroll" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">Sinais de que você <span class="urgent-text">PRECISA</span> deste guia:</h3>
+                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">Sinais de que a <span class="highlight-blue">Matrix</span> te chama:</h3>
                     <ul class="space-y-3">
-                        <li class="flex items-start"><i class="fas fa-exclamation-circle icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Sente que seu conhecimento está ficando <strong class="highlight-orange">ultrapassado</strong>?</span></li>
-                        <li class="flex items-start"><i class="fas fa-question-circle icon-benefit"></i><span style="color: var(--text-medium);">Não sabe como a IA pode <strong class="highlight-orange">realmente</strong> te ajudar na prática?</span></li>
-                        <li class="flex items-start"><i class="fas fa-clock icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Vê outros aproveitando oportunidades e tem medo de <strong class="highlight-orange">perder o timing</strong>?</span></li>
-                        <li class="flex items-start"><i class="fas fa-lightbulb icon-benefit"></i><span style="color: var(--text-medium);">Quer <strong class="highlight-orange">inovar</strong>, mas não sabe por onde começar com IA?</span></li>
+                        <li class="flex items-start"><i class="fas fa-signal icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Seu sistema operacional profissional parece <strong class="highlight-green">desatualizado</strong>?</span></li>
+                        <li class="flex items-start"><i class="fas fa-user-secret icon-benefit"></i><span style="color: var(--text-medium);">Quer entender os <strong class="highlight-green">códigos por trás da IA</strong> e usá-los a seu favor?</span></li>
+                        <li class="flex items-start"><i class="fas fa-hourglass-half icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Sente a <strong class="highlight-green">distorção temporal</strong> das oportunidades passando?</span></li>
+                        <li class="flex items-start"><i class="fas fa-plug icon-benefit"></i><span style="color: var(--text-medium);">Pronto para se <strong class="highlight-green">conectar à fonte</strong> da inovação?</span></li>
                     </ul>
-                    <p class="font-semibold text-lg pt-2" style="color: var(--text-light);">Se você se identificou, "A Última Revolução" é o <strong class="highlight-orange">atalho inteligente</strong> que você procura.</p>
+                    <p class="font-semibold text-lg pt-2" style="color: var(--text-light);">Se a resposta é SIM, "A Última Revolução" é o <strong class="highlight-green">download essencial</strong> para sua nova realidade.</p>
                 </div>
             </div>
         </div>
@@ -301,26 +366,26 @@
     
     <section id="ebook-details" class="py-16 md:py-20" style="background-color: var(--bg-secondary);">
         <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="section-heading text-center mb-4 animate-on-scroll">Sua Chave Para <span class="highlight-orange">Desvendar e Lucrar</span> com a IA:</h2>
-            <p class="text-lg text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.1s;">"A ÚLTIMA REVOLUÇÃO" é o seu guia completo, direto ao ponto, para transformar a Inteligência Artificial em sua maior aliada estratégica.</p>
+            <h2 class="section-heading text-center mb-4 animate-on-scroll">Decodificando <span class="highlight-blue">A Última Revolução</span>:</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.1s;">Este e-book é seu acesso direto ao kernel da Inteligência Artificial. Sem falhas, sem ruídos. Apenas o conhecimento que você precisa.</p>
             
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="order-2 md:order-1 space-y-5 animate-on-scroll" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">O que Você Vai Dominar em Poucas Horas:</h3>
+                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">Dentro do Programa, Você Vai Executar:</h3>
                     <ul class="list-none space-y-4">
-                        <li class="flex items-start"><i class="fas fa-brain icon-benefit"></i><div><strong style="color: var(--text-light);">As 4 Revoluções que Moldaram o Mundo:</strong> E como a IA se compara (e supera!).</div></li>
-                        <li class="flex items-start"><i class="fas fa-layer-group icon-benefit"></i><div><strong style="color: var(--text-light);">Surface AI vs. Deep AI:</strong> Entenda a diferença crucial e onde você se encaixa.</div></li>
-                        <li class="flex items-start"><i class="fas fa-user-tie icon-benefit"></i><div><strong style="color: var(--text-light);">Impacto Real no Mercado:</strong> Profissões que somem, profissões que surgem. Esteja preparado!</div></li>
-                        <li class="flex items-start"><i class="fas fa-code icon-benefit"></i><div><strong style="color: var(--text-light);">Engenharia de Prompts na Prática:</strong> Fale a "língua" das IAs e extraia resultados PODEROSOS.</div></li>
-                        <li class="flex items-start"><i class="fas fa-rocket icon-benefit"></i><div><strong style="color: var(--text-light);">Lidere a Transformação:</strong> Não apenas acompanhe, mas seja um agente de mudança com IA.</div></li>
+                        <li class="flex items-start"><i class="fas fa-history icon-benefit"></i><div><strong style="color: var(--text-light);">As 4 Revoluções que Resetaram o Mundo:</strong> E porque a IA é o patch definitivo.</div></li>
+                        <li class="flex items-start"><i class="fas fa-network-wired icon-benefit"></i><div><strong style="color: var(--text-light);">Surface AI vs. Deep AI:</strong> A arquitetura da inteligência e sua interface com o usuário.</div></li>
+                        <li class="flex items-start"><i class="fas fa-users-cog icon-benefit"></i><div><strong style="color: var(--text-light);">O Novo Algoritmo do Mercado:</strong> Profissões deletadas, novas funções compiladas.</div></li>
+                        <li class="flex items-start"><i class="fas fa-terminal icon-benefit"></i><div><strong style="color: var(--text-light);">Engenharia de Prompts Nível Mestre:</strong> Comande IAs com a precisão de um desenvolvedor experiente.</div></li>
+                        <li class="flex items-start"><i class="fas fa-lightbulb icon-benefit"></i><div><strong style="color: var(--text-light);">Instale a Mentalidade da Inovação:</strong> Deixe de ser um usuário, torne-se um criador na era da IA.</div></li>
                     </ul>
-                    <p class="font-bold text-lg pt-3" style="color: var(--text-light);">Chega de teoria. É hora de <strong class="highlight-orange">ação e resultados.</strong></p>
+                    <p class="font-bold text-lg pt-3" style="color: var(--text-light);">Prepare-se para o <strong class="highlight-green">upgrade</strong>. A teoria é apenas o começo.</p>
                 </div>
                 <div class="order-1 md:order-2 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
                      <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
                         alt="Detalhe do E-book A Última Revolução" 
-                        class="rounded-md shadow-2xl transform transition-transform hover:scale-105 w-3/4 sm:w-2/3 md:w-full max-w-xs" 
-                        onerror="this.onerror=null;this.src='https://placehold.co/300x420/161B22/FF8C00?text=Conteúdo+do+E-book';">
+                        class="rounded-md shadow-2xl transform transition-transform hover:scale-105 w-3/4 sm:w-2/3 md:w-full max-w-xs border border-blue-matrix/30" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/300x420/0A0A0A/00AFFF?text=E-book+Matrix';">
                 </div>
             </div>
         </div>
@@ -328,71 +393,57 @@
 
     <section id="oferta" class="py-16 md:py-24 bg-bg-primary text-white">
         <div class="container mx-auto px-4 sm:px-6 text-center">
-            <i class="fas fa-star text-accent-yellow text-4xl mb-6 animate-on-scroll"></i> <h2 class="section-heading mb-4 animate-on-scroll" style="animation-delay: 0.1s;">Sua <span class="highlight-orange">Decisão Inteligente</span> Começa AGORA.</h2>
+            <i class="fas fa-key text-accent-green-matrix text-4xl mb-6 animate-on-scroll"></i>
+            <h2 class="section-heading mb-4 animate-on-scroll" style="animation-delay: 0.1s;">Sua <span class="highlight-green">Chave de Acesso</span> ao Futuro.</h2>
             <p class="text-lg max-w-3xl mx-auto mb-10 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.2s;">
-                Por menos que um lanche, você acessa o conhecimento que pode <strong class="highlight-orange">transformar sua carreira e visão de futuro</strong>. Não perca esta janela de oportunidade.
+                Por um investimento irrisório, você adquire o código-fonte para <strong class="highlight-green">reprogramar sua carreira</strong>. Esta oferta é sua pílula vermelha.
             </p>
-            <div class="card-offer text-light p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl inline-block max-w-md mx-auto animate-on-scroll" style="animation-delay: 0.3s;">
+            <div class="card-offer text-light p-6 sm:p-8 md:p-10 rounded-xl inline-block max-w-md mx-auto animate-on-scroll" style="animation-delay: 0.3s;">
                 <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-orange);">"A ÚLTIMA REVOLUÇÃO"</h3>
-                <p class="text-sm mb-4" style="color: var(--text-medium);">Seu Guia Essencial para a Era da Inteligência Artificial.</p>
+                <p class="text-sm mb-4" style="color: var(--text-medium);">Seu Passaporte para a Realidade da IA.</p>
                 
                 <div class="stock-bar-container">
                     <div id="stockProgressBar" class="stock-bar" style="width: 15%;"></div> 
                 </div>
-                <p id="stockStatusText" class="stock-text urgent-text">🔥 QUASE ESGOTADO! Pouquíssimas unidades restantes.</p>
+                <p id="stockStatusText" class="stock-text urgent-text">🔥 ACESSO LIMITADO! Últimas Chaves Disponíveis.</p>
                 
                 <p class="my-3" style="color: var(--text-medium);">De <span class="line-through">R$97,00</span> por APENAS:</p>
                 <p class="text-5xl sm:text-6xl font-black text-accent-orange mb-2">R$ 20<span class="text-2xl">,00</span></p>
-                <p class="text-sm font-semibold mb-6 success-text">(Pagamento ÚNICO. Acesso VITALÍCIO!)</p>
+                <p class="text-sm font-semibold mb-6 success-text">(Pagamento ÚNICO. Acesso PERMANENTE!)</p>
 
                 <ul class="text-left space-y-3 mb-8 text-sm sm:text-base" style="color: var(--text-medium);">
-                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Conteúdo prático e direto ao ponto.</span></li>
-                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Linguagem clara, sem enrolação.</span></li>
-                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Acesso imediato e para sempre.</span></li>
-                    <li class="flex items-start"><i class="fas fa-shield-alt icon-benefit highlight-orange"></i><span><strong class="highlight-orange">RISCO ZERO:</strong> 7 Dias de Garantia Total!</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Protocolo prático e direto ao ponto.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Interface clara, sem códigos complexos.</span></li>
+                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-text"></i><span>Download imediato, acesso vitalício.</span></li>
+                    <li class="flex items-start"><i class="fas fa-shield-alt icon-benefit highlight-green"></i><span><strong class="highlight-green">FIREWALL DE RISCO:</strong> 7 Dias de Garantia Total!</span></li>
                 </ul>
                 <button onclick="handlePurchase()" class="w-full button-cta-main text-lg shadow-lg">
-                    <i class="fas fa-lock mr-2"></i> QUERO MEU ACESSO IMEDIATO!
+                    <i class="fas fa-download mr-2"></i> OBTER MINHA CHAVE AGORA!
                 </button>
-                <p class="text-xs mt-4" style="color: var(--text-medium); opacity:0.8;">Compra 100% Segura. Entrega Digital na Hora.</p>
+                <p class="text-xs mt-4" style="color: var(--text-medium); opacity:0.8;">Transação 100% Criptografada. Entrega Instantânea.</p>
                 
                 <div class="security-seals">
-                    <div>
-                        <i class="fas fa-shield-alt" title="Compra Segura"></i>
-                        <span>Compra Segura</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-lock" title="Privacidade Garantida"></i>
-                        <span>Dados Protegidos</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-check-circle" title="Qualidade Verificada"></i>
-                        <span>Conteúdo Verificado</span>
-                    </div>
-                    <div>
-                        <i class="fab fa-cc-visa" title="Aceitamos Visa"></i>
-                    </div>
-                     <div>
-                        <i class="fab fa-cc-mastercard" title="Aceitamos Mastercard"></i>
-                    </div>
+                    <div> <i class="fas fa-shield-alt" title="Compra Segura"></i> <span>Segurança SSL</span> </div>
+                    <div> <i class="fas fa-lock" title="Privacidade Garantida"></i> <span>Dados Criptografados</span> </div>
+                    <div> <i class="fas fa-microchip" title="Tecnologia de Ponta"></i> <span>Plataforma Confiável</span></div>
+                    <div> <i class="fab fa-cc-visa" title="Aceitamos Visa"></i> </div>
+                    <div> <i class="fab fa-cc-mastercard" title="Aceitamos Mastercard"></i> </div>
                 </div>
-
             </div>
              <p class="mt-10 text-base animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.4s;">
-                <strong class="urgent-text">ATENÇÃO:</strong> Este preço promocional é <strong class="highlight-orange">exclusivo para esta página</strong> e pode subir a qualquer momento sem aviso prévio. Aja rápido!
+                <strong class="urgent-text">ALERTA DO SISTEMA:</strong> O preço promocional é uma <strong class="highlight-green">anomalia temporária</strong> e será corrigido em breve. Não perca a janela.
             </p>
         </div>
     </section>
 
-    <footer class="py-12 md:py-16 text-center bg-bg-primary border-t border-gray-700/20">
+    <footer class="py-12 md:py-16 text-center bg-bg-primary border-t border-gray-700/10">
         <div class="container mx-auto px-4 sm:px-6">
             <p class="text-sm" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
-            <p class="text-xs mt-2" style="color: var(--text-medium); opacity:0.7;">Invista em você. O futuro é agora.</p>
+            <p class="text-xs mt-2" style="color: var(--text-medium); opacity:0.6;">Desconecte-se do comum. Conecte-se ao futuro.</p>
         </div>
     </footer>
 
     <script>
-        // --- Barra de Progresso de Rolagem ---
         const scrollProgressBar = document.getElementById('scroll-progress-bar');
         function updateScrollProgress() {
             if (!scrollProgressBar) return;
@@ -404,11 +455,11 @@
         window.addEventListener('scroll', updateScrollProgress);
         window.addEventListener('resize', updateScrollProgress);
 
-        // --- Script do Contador Regressivo ---
         function startCountdown(durationInHours) {
             let endTime = new Date().getTime() + durationInHours * 60 * 60 * 1000;
-            const savedEndTimeKey = 'countdownEndTime_ebookAI_vProf'; 
+            const savedEndTimeKey = 'countdownEndTime_ebookAI_vMatrix'; 
             const savedEndTime = localStorage.getItem(savedEndTimeKey);
+            let timeLeft = 0; 
 
             if (savedEndTime && parseInt(savedEndTime) > new Date().getTime()) {
                 endTime = parseInt(savedEndTime);
@@ -427,23 +478,23 @@
 
             function updateTimer() {
                 const now = new Date().getTime();
-                let timeLeft = endTime - now;
+                timeLeft = endTime - now; 
 
                 if (timeLeft <= 0) {
                     timeLeft = 0; 
                     const countdownContainer = countdownElement.parentElement; 
-                    if (countdownContainer && countdownContainer.innerHTML.indexOf("OFERTA ENCERRADA") === -1) {
-                         countdownContainer.innerHTML = `<p class='text-xl font-bold p-3 urgent-text'>OFERTA ENCERRADA!</p>`;
+                    if (countdownContainer && countdownContainer.innerHTML.indexOf("ACESSO EXPIRADO") === -1) { // Texto alterado
+                         countdownContainer.innerHTML = `<p class='text-xl font-bold p-3 urgent-text'>ACESSO EXPIRADO!</p>`;
                     }
                     localStorage.removeItem(savedEndTimeKey);
                     if(buyButton && !buyButton.disabled) {
                         buyButton.disabled = true;
-                        buyButton.innerHTML = '<i class="fas fa-times-circle mr-2"></i> OFERTA ESGOTADA';
-                        buyButton.style.backgroundColor = '#555'; 
-                        buyButton.style.color = '#aaa';
+                        buyButton.innerHTML = '<i class="fas fa-ban mr-2"></i> TEMPO ESGOTADO'; // Ícone alterado
+                        buyButton.style.backgroundColor = '#333'; 
+                        buyButton.style.color = '#888';
                         buyButton.style.cursor = 'not-allowed';
                         buyButton.classList.remove('button-cta-main'); 
-                        buyButton.classList.add('bg-gray-600', 'text-gray-400', 'cursor-not-allowed', 'opacity-70');
+                        buyButton.classList.add('bg-gray-700', 'text-gray-500', 'cursor-not-allowed', 'opacity-70');
                     }
                 }
 
@@ -460,10 +511,8 @@
 
             updateTimer(); 
             const timerInterval = setInterval(updateTimer, 1000);
-            if (timeLeft <=0 && timerInterval) clearInterval(timerInterval);
         }
 
-        // --- Animação de Entrada ao Rolar ---
         const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
         const elementObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -471,19 +520,17 @@
                     entry.target.classList.add('is-visible');
                 }
             });
-        }, { threshold: 0.1 }); 
+        }, { threshold: 0.05 }); 
 
         elementsToAnimate.forEach(el => {
             elementObserver.observe(el);
         });
 
-        // --- Ano Atual no Rodapé ---
         const currentYearEl = document.getElementById('currentYear');
         if (currentYearEl) {
             currentYearEl.textContent = new Date().getFullYear();
         }
         
-        // --- Smooth Scroll para Âncoras ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -499,7 +546,6 @@
             });
         });
         
-        // --- Função de Compra (Exemplo) ---
         function handlePurchase() {
             const checkoutUrl = 'https://SEU_LINK_DE_CHECKOUT_AQUI.com'; 
             alert('Você será redirecionado para o pagamento. (Substitua este alerta pela integração real)');
@@ -507,44 +553,42 @@
             console.log("Botão de compra clicado. URL (exemplo):", checkoutUrl);
         }
 
-        // --- Barra de Progresso de Estoque ---
         function updateStockBar() {
             const stockBar = document.getElementById('stockProgressBar');
             const stockText = document.getElementById('stockStatusText');
             if (!stockBar || !stockText) return;
 
-            let currentStockPercentage = parseFloat(localStorage.getItem('ebookStockPercentage_vProf'));
+            let currentStockPercentage = parseFloat(localStorage.getItem('ebookStockPercentage_vMatrix')); 
 
-            if (isNaN(currentStockPercentage) || currentStockPercentage <= 3) { 
-                currentStockPercentage = 5 + Math.random() * 10; 
+            if (isNaN(currentStockPercentage) || currentStockPercentage <= 2) { 
+                currentStockPercentage = 3 + Math.random() * 7; 
             } else {
-                currentStockPercentage -= Math.random() * 0.3 + 0.1; 
+                currentStockPercentage -= Math.random() * 0.2 + 0.05; 
             }
             
-            if (currentStockPercentage < 3) currentStockPercentage = 3; 
+            if (currentStockPercentage < 2) currentStockPercentage = 2; 
 
-            localStorage.setItem('ebookStockPercentage_vProf', currentStockPercentage.toFixed(2));
+            localStorage.setItem('ebookStockPercentage_vMatrix', currentStockPercentage.toFixed(2));
             
             stockBar.style.width = currentStockPercentage + '%';
 
-            if (currentStockPercentage <= 10) {
-                stockText.innerHTML = `🔥 <strong class="urgent-text">ÚLTIMAS UNIDADES!</strong> Corra antes que acabe!`;
-                stockBar.style.background = 'linear-gradient(90deg, var(--accent-red) -50%, var(--accent-orange) 0%, var(--accent-red) 50%, var(--accent-orange) 100%)'; /* Laranja na animação */
+            if (currentStockPercentage <= 7) {
+                stockText.innerHTML = `🔥 <strong class="urgent-text">NÍVEL CRÍTICO!</strong> Últimas chaves de acesso!`;
+                stockBar.style.background = 'linear-gradient(90deg, var(--accent-red) -50%, var(--accent-green-matrix) 0%, var(--accent-red) 50%, var(--accent-green-matrix) 100%)'; 
                 stockBar.style.backgroundSize = '300% 100%';
-                stockBar.style.animation = 'animatedGradient 3s ease infinite';
-            } else if (currentStockPercentage <= 30) {
-                stockText.innerHTML = `⏳ <strong class="highlight-orange">ESTOQUE BAIXO!</strong> Garanta o seu agora!`; /* Laranja para estoque baixo */
+                stockBar.style.animation = 'animatedGradient 2.5s ease infinite';
+            } else if (currentStockPercentage <= 25) {
+                stockText.innerHTML = `⏳ <strong class="highlight-green">POUCAS CHAVES!</strong> Garanta sua entrada!`; 
             } else {
-                stockText.innerHTML = `⚠️ Estoque limitado disponível. Aproveite!`;
+                stockText.innerHTML = `⚠️ Chaves de acesso limitadas.`;
             }
         }
 
-        // --- Inicializar ---
         window.onload = function() {
-            startCountdown(8); 
+            startCountdown(4); 
             updateScrollProgress(); 
             updateStockBar(); 
-            setInterval(updateStockBar, 60000); 
+            setInterval(updateStockBar, 45000); // Atualiza estoque a cada 45 segundos
 
             elementsToAnimate.forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {

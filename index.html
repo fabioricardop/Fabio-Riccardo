@@ -109,14 +109,29 @@
         }
         .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
         
-        .ebook-cover-hero {
+        .ebook-image-hero { 
             box-shadow: 0 10px 25px rgba(0,0,0,0.25), 0 5px 10px rgba(0,0,0,0.15); 
             transition: transform 0.3s ease-out;
-            max-width: 220px; 
-            width: 65%; 
+            max-width: 320px; 
+            width: 90%; 
+            aspect-ratio: 16 / 9; 
+            object-fit: cover; 
             border-radius: 0.375rem; 
+            margin-left: auto;
+            margin-right: auto;
         }
-         .ebook-cover-hero:hover { transform: scale(1.02); }
+         .ebook-image-hero:hover { transform: scale(1.02); }
+
+        .ebook-text-label { 
+            font-family: 'Anton', sans-serif;
+            font-size: 1.75rem; 
+            color: var(--text-light); 
+            letter-spacing: 1.5px;
+            margin-top: 0.75rem; 
+            margin-bottom: 1rem; 
+            text-transform: uppercase;
+        }
+         @media (min-width: 640px) { .ebook-text-label { font-size: 2.25rem; } }
         
         .section-heading {
             font-size: 2rem; 
@@ -127,41 +142,36 @@
         @media (min-width: 640px) { .section-heading { font-size: 2.25rem; } }
         @media (min-width: 768px) { .section-heading { font-size: 2.75rem; } }
 
-        .hero-main-title { /* Título "A ÚLTIMA REVOLUÇÃO" */
-            font-family: 'Anton', sans-serif; /* Fonte Anton aplicada */
-            font-size: 3rem; /* Aumentado para Anton */
+        .hero-main-title { 
+            font-family: 'Anton', sans-serif; 
+            font-size: 3rem; 
             line-height: 1;
-            letter-spacing: 1px; /* Espaçamento entre letras para Anton */
-            color: var(--text-light); /* Cor branca */
+            letter-spacing: 1px; 
+            color: var(--text-light); 
         }
-        .hero-subtitle { /* "Você está DENTRO ou FORA?" */
+        .hero-subtitle { 
             font-size: 1.125rem; 
             line-height: 1.5; 
         }
-        .hero-intro-text { /* "O FUTURO CHEGOU." */
-            font-size: 1.25rem; /* Aumentado um pouco */
-            font-weight: 600; /* Semibold */
-            color: var(--accent-green-matrix); /* Cor verde Matrix */
-            animation: glowGreenText 2s infinite alternate; /* Animação de brilho */
+        .hero-intro-text { 
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            color: var(--accent-green-matrix); 
+            animation: glowGreenText 2s infinite alternate; 
         }
 
         @keyframes glowGreenText {
-            from {
-                text-shadow: 0 0 5px var(--accent-green-matrix), 0 0 10px var(--accent-green-matrix);
-            }
-            to {
-                text-shadow: 0 0 10px var(--accent-green-matrix), 0 0 20px var(--accent-green-matrix), 0 0 30px rgba(57, 255, 20, 0.5);
-            }
+            from { text-shadow: 0 0 5px var(--accent-green-matrix), 0 0 10px var(--accent-green-matrix); }
+            to { text-shadow: 0 0 10px var(--accent-green-matrix), 0 0 20px var(--accent-green-matrix), 0 0 30px rgba(57, 255, 20, 0.5); }
         }
 
-
         @media (min-width: 640px) { 
-            .hero-main-title { font-size: 4.5rem; } /* Aumentado para Anton */
+            .hero-main-title { font-size: 4.5rem; } 
             .hero-subtitle { font-size: 1.25rem; }
             .hero-intro-text { font-size: 1.5rem; }
         }
          @media (min-width: 768px) { 
-            .hero-main-title { font-size: 5.5rem; } /* Aumentado para Anton */
+            .hero-main-title { font-size: 5.5rem; } 
             .hero-subtitle { font-size: 1.5rem; }
             .hero-intro-text { font-size: 1.75rem; }
         }
@@ -171,7 +181,6 @@
         .highlight-yellow { color: var(--accent-yellow); } 
         .urgent-text { color: var(--accent-red); }
         .success-text { color: var(--accent-green); }
-
 
         .card-offer {
             background-color: #0A0A0A; 
@@ -228,14 +237,14 @@
             color: var(--accent-green-matrix);
             font-size: 10px; 
             opacity: 0; 
-            animation: fall 10s linear infinite;
+            animation: fall 8s linear infinite; 
             user-select: none;
         }
 
         @keyframes fall {
-            0% { transform: translateY(-20px); opacity: 0; }
-            10% { opacity: 0.3; } 
-            90% { opacity: 0.3; }
+            0% { transform: translateY(-30px); opacity: 0; } 
+            5% { opacity: 0.6; } 
+            85% { opacity: 0.6; }
             100% { transform: translateY(100vh); opacity: 0; } 
         }
 
@@ -258,17 +267,19 @@
                 Você está <strong class="highlight-blue">DENTRO</strong> ou <strong class="urgent-text">FORA</strong>?
             </p>
             
-            <h1 class="hero-main-title font-black my-4 sm:my-5" style="animation-delay: 0.3s;">
+            <h1 class="hero-main-title my-4 sm:my-5" style="animation-delay: 0.3s;">
                 A ÚLTIMA REVOLUÇÃO
             </h1>
             
-            <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
-                 alt="Capa do E-book A Última Revolução"
-                 class="mx-auto mt-6 mb-6 sm:mt-8 sm:mb-8 rounded-md ebook-cover-hero"
+            <img src="https://sdmntprwestus.oaiusercontent.com/files/00000000-3de0-6230-b21e-8c29cf42824f/raw?se=2025-05-18T23%3A26%3A13Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=b64a43d9-3512-45c2-98b4-dea55d094240&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T22%3A15%3A36Z&ske=2025-05-19T22%3A15%3A36Z&sks=b&skv=2024-08-04&sig=iH7PAku7XWZTMo4h3ezjTzka3/ABNQ4pT8ukx02VJfk%3D" 
+                 alt="E-book A Última Revolução - Capa 16:9"
+                 class="ebook-image-hero mt-6 mb-4 sm:mt-8 sm:mb-5"
                  style="animation-delay: 0.4s;"
-                 onerror="this.onerror=null;this.src='https://placehold.co/220x308/000000/FF8C00?text=A+REVOLUÇÃO';">
+                 onerror="this.onerror=null;this.src='https://placehold.co/480x270/000000/E0E0E0?text=Erro+Imagem';">
             
-            <div class="mt-4 sm:mt-6" style="animation-delay: 0.5s;">
+            <p class="ebook-text-label" style="animation-delay: 0.45s;">EBOOK</p>
+            
+            <div class="mt-2 sm:mt-4" style="animation-delay: 0.5s;">
                  <p class="mb-2 text-sm sm:text-base font-medium" style="color: var(--text-medium);">Sua chance <strong class="urgent-text">TERMINA EM</strong>:</p>
                 <div id="countdown" class="flex justify-center gap-2 mb-5 sm:mb-6">
                     <div class="countdown-block"> <span id="days">00</span><p>Dias</p> </div>
@@ -333,10 +344,10 @@
                     <p class="font-bold text-lg pt-3" style="color: var(--text-light);">Chega de teoria. É hora de <strong class="highlight-orange">ação e resultados.</strong></p>
                 </div>
                 <div class="order-1 md:order-2 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
-                     <img src="https://sdmntprcentralus.oaiusercontent.com/files/00000000-a860-61f5-bb9e-09d264cbfa27/raw?se=2025-05-18T22%3A34%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T08%3A53%3A32Z&ske=2025-05-19T08%3A53%3A32Z&sks=b&skv=2024-08-04&sig=Vf7dHgwRqlNmSGuNCke%2BfRf16fQyCeceZc2iqgrsr1c%3D" 
+                     <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-6a54-61f8-b93b-6c3a8ed52d4c/raw?se=2025-05-18T23%3A23%3A52Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=b64a43d9-3512-45c2-98b4-dea55d094240&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T09%3A14%3A40Z&ske=2025-05-19T09%3A14%3A40Z&sks=b&skv=2024-08-04&sig=wPb3jmhGkup1bbN/kO1I1xTlyySI%2B721d4%2BsnIOYRCM%3D" 
                         alt="Detalhe do E-book A Última Revolução" 
-                        class="rounded-md shadow-2xl transform transition-transform hover:scale-105 w-3/4 sm:w-2/3 md:w-full max-w-xs" 
-                        onerror="this.onerror=null;this.src='https://placehold.co/300x420/000000/FF8C00?text=Conteúdo+do+E-book';">
+                        class="ebook-image-hero w-full max-w-md" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/480x270/000000/E0E0E0?text=Conteúdo+E-book';">
                 </div>
             </div>
         </div>
@@ -408,7 +419,7 @@
 
         function startCountdown(durationInHours) {
             let endTime = new Date().getTime() + durationInHours * 60 * 60 * 1000;
-            const savedEndTimeKey = 'countdownEndTime_ebookAI_vMatrixTouch'; 
+            const savedEndTimeKey = 'countdownEndTime_ebookAI_vFinalAdjust'; 
             const savedEndTime = localStorage.getItem(savedEndTimeKey);
             let timeLeft = 0; 
 
@@ -512,7 +523,7 @@
             let currentStockPercentage = parseFloat(localStorage.getItem('ebookStockPercentage_vFinalAdjust'));
 
             if (isNaN(currentStockPercentage) || currentStockPercentage <= 55) { 
-                currentStockPercentage = 60 + Math.random() * 15; // Começa entre 60% e 75%
+                currentStockPercentage = 60 + Math.random() * 15; 
             } else {
                 currentStockPercentage -= Math.random() * 0.5 + 0.2; 
             }
@@ -538,16 +549,16 @@
         function createMatrixRain() {
             const container = document.getElementById('matrixRainContainer');
             if (!container) return;
-            const numberOfStreams = 20; 
-            const streamLength = 12; 
+            const numberOfStreams = 60; 
+            const streamLength = 15; 
 
             for (let i = 0; i < numberOfStreams; i++) {
                 const stream = document.createElement('div');
                 stream.style.position = 'absolute';
                 stream.style.left = Math.random() * 100 + 'vw'; 
-                stream.style.top = -Math.random() * 300 + 'px'; 
+                stream.style.top = -Math.random() * 400 + 'px'; 
                 stream.style.opacity = '0'; 
-                stream.style.animation = `fall ${7 + Math.random() * 8}s linear ${Math.random() * 7}s infinite`; 
+                stream.style.animation = `fall ${6 + Math.random() * 6}s linear ${Math.random() * 6}s infinite`; 
 
 
                 for (let j = 0; j < streamLength; j++) {
@@ -555,10 +566,10 @@
                     char.textContent = Math.random() > 0.5 ? '0' : '1';
                     char.style.display = 'block'; 
                     char.style.fontFamily = "'Courier New', Courier, monospace";
-                    char.style.fontSize = '10px'; 
+                    char.style.fontSize = '11px'; 
                     char.style.color = 'var(--accent-green-matrix)';
-                    char.style.opacity = (1 - (j / streamLength) * 0.8) * 0.4; 
-                    char.style.textShadow = `0 0 3px var(--accent-green-matrix)`; 
+                    char.style.opacity = (1 - (j / streamLength) * 0.7) * 0.55; 
+                    char.style.textShadow = `0 0 4px var(--accent-green-matrix)`; 
                     stream.appendChild(char);
                 }
                 container.appendChild(stream);

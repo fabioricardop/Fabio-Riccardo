@@ -220,7 +220,7 @@
             background: none;
             border: none;
             color: var(--text-light);
-            font-size: 4rem; /* Grande */
+            font-size: 4rem; 
             animation: blinkMuteIconLarge 1.5s infinite;
         }
         @keyframes blinkMuteIconLarge {
@@ -252,7 +252,6 @@
              visibility: visible;
         }
 
-
         .custom-play-pause-button, .custom-mute-button-controlbar {
             background: none;
             border: none;
@@ -276,6 +275,23 @@
             width: 85%; 
             border-radius: 3px;
             transition: width 0.1s linear;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .footer-logo .brain-icon {
+            font-size: 2.5rem; /* Tamanho do ícone de cérebro */
+            color: var(--accent-red); /* Cor vermelha para o cérebro */
+            margin-right: 0.75rem;
+        }
+        .footer-logo .author-name {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.75rem; /* Tamanho do nome */
+            color: var(--text-light);
+            letter-spacing: 1px;
         }
 
     </style>
@@ -423,7 +439,11 @@
 
     <footer class="py-12 md:py-16 text-center bg-bg-primary border-t border-gray-700/20">
         <div class="container mx-auto px-4 sm:px-6">
-            <p class="text-sm" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
+            <div class="footer-logo">
+                <i class="fas fa-brain brain-icon"></i>
+                <span class="author-name">Fabio Riccardo</span>
+            </div>
+            <p class="text-sm mt-4" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
             <p class="text-xs mt-2" style="color: var(--text-medium); opacity:0.7;">Invista em você. O futuro é agora.</p>
         </div>
     </footer>
@@ -585,7 +605,6 @@
 
         if (customVideo && playPauseButton && customProgressBar && videoSectionForCustomPlayer && initialMuteOverlay && initialMuteButton && muteUnmuteCtrlBtn && videoPlayerContainer) {
             
-            customVideo.muted = true; 
             initialMuteOverlay.style.display = 'flex';
             muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
 
@@ -593,13 +612,9 @@
             const customVideoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        if(customVideo.muted && initialMuteOverlay.style.display !== 'none'){
-                        } else {
-                             customVideo.play().catch(error => {
-                                console.log("Autoplay bloqueado, aguardando interação:", error);
-                                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
-                            });
-                        }
+                        customVideo.play().catch(error => {
+                            console.log("Autoplay inicial (mutado) bloqueado:", error);
+                        });
                     } else {
                         customVideo.pause();
                     }
@@ -612,7 +627,9 @@
                 customVideo.muted = false;
                 initialMuteOverlay.style.display = 'none';
                 muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-                customVideo.play().catch(e => console.log("Erro ao tocar após desmutar:", e));
+                if (customVideo.paused) { 
+                    customVideo.play().catch(e => console.log("Erro ao tocar após desmutar:", e));
+                }
                 videoPlayerContainer.classList.add('controls-visible');
                  setTimeout(() => {
                      if(!customVideo.paused) videoPlayerContainer.classList.remove('controls-visible');
@@ -657,6 +674,9 @@
             customVideo.addEventListener('volumechange', () => {
                  if (customVideo.muted) {
                     muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                     if (initialMuteOverlay.style.display === 'none' && !customVideo.paused) { // Se o overlay já foi removido e o vídeo está tocando
+                        initialMuteOverlay.style.display = 'flex'; // Mostra o overlay de novo se mutar pelo controlbar
+                     }
                 } else {
                     muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
                     if (initialMuteOverlay.style.display !== 'none') {

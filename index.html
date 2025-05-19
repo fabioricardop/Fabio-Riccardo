@@ -283,17 +283,29 @@
             padding-top: 1.5rem; 
             padding-bottom: 1rem;
         }
-        .page-top-logo .logo-icon { /* Alterado de brain-icon para logo-icon */
-            font-size: 2rem; 
-            color: var(--accent-red); 
-            margin-right: 0.5rem;
-        }
         .page-top-logo .author-name {
             font-family: 'Anton', sans-serif;
-            font-size: 1.5rem; 
+            font-size: 1.75rem; /* Aumentado para destaque */
             color: var(--text-light);
             letter-spacing: 1px;
             text-transform: uppercase; 
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .footer-logo .logo-icon {
+            font-size: 2.5rem; 
+            color: var(--accent-red); 
+            margin-right: 0.75rem;
+        }
+        .footer-logo .author-name {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.75rem; 
+            color: var(--text-light);
+            letter-spacing: 1px;
         }
 
     </style>
@@ -309,7 +321,6 @@
         
         <div class="relative z-10 animate-on-scroll w-full max-w-xl">
             <div class="page-top-logo">
-                <i class="fas fa-apple-alt logo-icon"></i> {/* Ícone de pera (apple-alt é o mais próximo no FA) */}
                 <span class="author-name">FABIO RICCARDO</span>
             </div>
 

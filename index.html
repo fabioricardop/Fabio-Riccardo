@@ -189,7 +189,7 @@
 
         .custom-video-player {
             width: 100%;
-            max-width: 640px; /* Ajuste conforme necessário */
+            max-width: 640px;
             margin: 0 auto;
             position: relative;
             background-color: #000;
@@ -200,47 +200,81 @@
         .custom-video-player video {
             display: block;
             width: 100%;
-            height: auto;
+            height: auto; 
             border-radius: 8px;
         }
+        .initial-mute-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 10;
+            cursor: pointer;
+        }
+        .initial-mute-button {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 4rem; /* Grande */
+            animation: blinkMuteIconLarge 1.5s infinite;
+        }
+        @keyframes blinkMuteIconLarge {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1);}
+        }
+
         .custom-video-controls {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 10px;
-            background-color: rgba(0,0,0,0.6);
+            padding: 8px 12px; 
+            background-color: rgba(0,0,0,0.7);
             display: flex;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 5; 
         }
-        .custom-video-player:hover .custom-video-controls,
-        .custom-video-player.controls-visible .custom-video-controls {
+        .custom-video-player.controls-visible .custom-video-controls,
+        .custom-video-player video:paused + .initial-mute-overlay + .custom-video-controls { 
             opacity: 1;
+            visibility: visible;
         }
-        .custom-play-pause-button {
+         .custom-video-player:hover .custom-video-controls {
+             opacity: 1;
+             visibility: visible;
+        }
+
+
+        .custom-play-pause-button, .custom-mute-button-controlbar {
             background: none;
             border: none;
             color: var(--text-light);
-            font-size: 1.5rem;
+            font-size: 1.25rem; 
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 5px 8px;
         }
         .custom-progress-bar-container {
             flex-grow: 1;
-            height: 8px;
-            background-color: rgba(255,255,255,0.2);
+            height: 6px; 
+            background-color: rgba(255,255,255,0.3);
             margin: 0 10px;
-            border-radius: 4px;
-            cursor: default; /* Não permite clicar para avançar */
+            border-radius: 3px;
+            cursor: default; 
             overflow: hidden;
         }
         .custom-progress-bar {
             height: 100%;
             background-color: var(--accent-red);
-            width: 85%; /* Começa quase cheio */
-            border-radius: 4px;
+            width: 85%; 
+            border-radius: 3px;
             transition: width 0.1s linear;
         }
 
@@ -294,15 +328,19 @@
 
             <div class="grid md:grid-cols-1 gap-8 md:gap-12 items-center"> 
                 <div class="animate-on-scroll custom-video-player" style="animation-delay: 0.1s;">
-                     <video id="customVideoPlayer" loop muted playsinline poster="https://placehold.co/640x360/000000/FF0000?text=Carregando+Vídeo...">
+                     <video id="customVideoPlayer" loop playsinline poster="https://placehold.co/640x360/000000/FF0000?text=Carregando+Vídeo...">
                         <source src="0518.mp4" type="video/mp4"> 
                         Seu navegador não suporta o elemento de vídeo.
                     </video>
+                    <div id="initialMuteOverlay" class="initial-mute-overlay">
+                        <button id="initialMuteButton" class="initial-mute-button"><i class="fas fa-volume-mute"></i></button>
+                    </div>
                     <div class="custom-video-controls">
                         <button id="playPauseBtn" class="custom-play-pause-button"><i class="fas fa-play"></i></button>
                         <div class="custom-progress-bar-container">
                             <div id="customVideoProgressBar" class="custom-progress-bar"></div>
                         </div>
+                        <button id="muteUnmuteCtrlBtn" class="custom-mute-button-controlbar"><i class="fas fa-volume-mute"></i></button>
                     </div>
                 </div>
                 <div class="space-y-5 animate-on-scroll md:mt-0 mt-8" style="animation-delay: 0.2s;">
@@ -537,14 +575,31 @@
 
         const customVideo = document.getElementById('customVideoPlayer');
         const playPauseButton = document.getElementById('playPauseBtn');
+        const initialMuteOverlay = document.getElementById('initialMuteOverlay');
+        const initialMuteButton = document.getElementById('initialMuteButton');
+        const muteUnmuteCtrlBtn = document.getElementById('muteUnmuteCtrlBtn');
         const customProgressBar = document.getElementById('customVideoProgressBar');
         const videoSectionForCustomPlayer = document.getElementById('problem-video-section');
+        const videoPlayerContainer = customVideo ? customVideo.closest('.custom-video-player') : null;
 
-        if (customVideo && playPauseButton && customProgressBar && videoSectionForCustomPlayer) {
+
+        if (customVideo && playPauseButton && customProgressBar && videoSectionForCustomPlayer && initialMuteOverlay && initialMuteButton && muteUnmuteCtrlBtn && videoPlayerContainer) {
+            
+            customVideo.muted = true; 
+            initialMuteOverlay.style.display = 'flex';
+            muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+
+
             const customVideoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        customVideo.play().catch(error => console.log("Erro ao tocar vídeo customizado:", error));
+                        if(customVideo.muted && initialMuteOverlay.style.display !== 'none'){
+                        } else {
+                             customVideo.play().catch(error => {
+                                console.log("Autoplay bloqueado, aguardando interação:", error);
+                                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+                            });
+                        }
                     } else {
                         customVideo.pause();
                     }
@@ -552,37 +607,92 @@
             }, { threshold: 0.5 });
 
             customVideoObserver.observe(videoSectionForCustomPlayer);
+            
+            initialMuteButton.addEventListener('click', () => {
+                customVideo.muted = false;
+                initialMuteOverlay.style.display = 'none';
+                muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+                customVideo.play().catch(e => console.log("Erro ao tocar após desmutar:", e));
+                videoPlayerContainer.classList.add('controls-visible');
+                 setTimeout(() => {
+                     if(!customVideo.paused) videoPlayerContainer.classList.remove('controls-visible');
+                }, 2000);
+            });
+
 
             playPauseButton.addEventListener('click', () => {
-                if (customVideo.paused || customVideo.ended) {
+                if (initialMuteOverlay.style.display !== 'none') {
+                     initialMuteButton.click(); 
+                } else if (customVideo.paused || customVideo.ended) {
                     customVideo.play();
                 } else {
                     customVideo.pause();
                 }
             });
+            
+            muteUnmuteCtrlBtn.addEventListener('click', () => {
+                if (initialMuteOverlay.style.display !== 'none') {
+                     initialMuteButton.click();
+                } else {
+                    customVideo.muted = !customVideo.muted;
+                }
+            });
+
 
             customVideo.addEventListener('play', () => {
                 playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+                if (initialMuteOverlay.style.display !== 'none') {
+                     initialMuteOverlay.style.display = 'none';
+                }
+                 setTimeout(() => {
+                     if(!customVideo.paused) videoPlayerContainer.classList.remove('controls-visible');
+                }, 2000);
             });
 
             customVideo.addEventListener('pause', () => {
                 playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+                videoPlayerContainer.classList.add('controls-visible');
+            });
+            
+            customVideo.addEventListener('volumechange', () => {
+                 if (customVideo.muted) {
+                    muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+                    if (initialMuteOverlay.style.display !== 'none') {
+                        initialMuteOverlay.style.display = 'none';
+                    }
+                }
             });
 
+
             customVideo.addEventListener('loadedmetadata', () => {
-                const initialProgress = 85; // Começa em 85%
+                const initialProgress = 85; 
                 customProgressBar.style.width = initialProgress + '%';
             });
             
             customVideo.addEventListener('timeupdate', () => {
                 if (customVideo.duration) {
                     const actualPercentage = (customVideo.currentTime / customVideo.duration) * 100;
-                    const visualStart = 85; // Onde a barra visualmente começa
-                    const visualRange = 100 - visualStart; // O range visual restante (15%)
+                    const visualStart = 85; 
+                    const visualRange = 100 - visualStart; 
                     
-                    // Mapeia o progresso real (0-100%) para o range visual restante (85-100%)
                     const progressBarPercentage = visualStart + (actualPercentage / 100) * visualRange;
                     customProgressBar.style.width = progressBarPercentage + '%';
+                }
+            });
+
+            videoPlayerContainer.addEventListener('click', (event) => {
+                if (event.target === customVideo || event.target === videoPlayerContainer) {
+                    if (initialMuteOverlay.style.display !== 'none') {
+                        return; 
+                    }
+                    videoPlayerContainer.classList.toggle('controls-visible');
+                     if(!customVideo.paused && videoPlayerContainer.classList.contains('controls-visible')){
+                         setTimeout(() => {
+                            videoPlayerContainer.classList.remove('controls-visible');
+                        }, 2000);
+                     }
                 }
             });
         }

@@ -203,31 +203,6 @@
             height: auto; 
             border-radius: 8px;
         }
-        .initial-mute-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 10;
-            cursor: pointer;
-        }
-        .initial-mute-button {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 4rem; 
-            animation: blinkMuteIconLarge 1.5s infinite;
-        }
-        @keyframes blinkMuteIconLarge {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1);}
-        }
-
         .custom-video-controls {
             position: absolute;
             bottom: 0;
@@ -243,7 +218,7 @@
             z-index: 5; 
         }
         .custom-video-player.controls-visible .custom-video-controls,
-        .custom-video-player video:paused + .initial-mute-overlay + .custom-video-controls { 
+        .custom-video-player video:paused + .custom-video-controls { 
             opacity: 1;
             visibility: visible;
         }
@@ -276,22 +251,24 @@
             border-radius: 3px;
             transition: width 0.1s linear;
         }
-        .footer-logo {
+        .page-top-logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 1rem;
+            padding-top: 1.5rem; /* Espaçamento do topo */
+            padding-bottom: 1rem;
         }
-        .footer-logo .brain-icon {
-            font-size: 2.5rem; /* Tamanho do ícone de cérebro */
-            color: var(--accent-red); /* Cor vermelha para o cérebro */
-            margin-right: 0.75rem;
+        .page-top-logo .brain-icon {
+            font-size: 2rem; 
+            color: var(--accent-red); 
+            margin-right: 0.5rem;
         }
-        .footer-logo .author-name {
+        .page-top-logo .author-name {
             font-family: 'Anton', sans-serif;
-            font-size: 1.75rem; /* Tamanho do nome */
+            font-size: 1.5rem; 
             color: var(--text-light);
             letter-spacing: 1px;
+            text-transform: uppercase; /* Caixa alta */
         }
 
     </style>
@@ -306,7 +283,12 @@
              style="background-color: var(--bg-primary); min-height: calc(100vh - 60px);">
         
         <div class="relative z-10 animate-on-scroll w-full max-w-xl">
-            <p class="hero-intro-text mb-2 sm:mb-3" style="animation-delay: 0.1s;">O FUTURO CHEGOU.</p>
+            <div class="page-top-logo">
+                <i class="fas fa-brain brain-icon"></i>
+                <span class="author-name">FABIO RICCARDO</span>
+            </div>
+
+            <p class="hero-intro-text mb-2 sm:mb-3 mt-4" style="animation-delay: 0.1s;">O FUTURO CHEGOU.</p>
             <p class="hero-subtitle mb-4 sm:mb-5" style="color: var(--text-medium); animation-delay: 0.2s;">
                 Você está <strong class="text-light">DENTRO</strong> ou <strong class="urgent-text">FORA</strong> desta <strong class="highlight-red">REVOLUÇÃO</strong>?
             </p>
@@ -344,19 +326,16 @@
 
             <div class="grid md:grid-cols-1 gap-8 md:gap-12 items-center"> 
                 <div class="animate-on-scroll custom-video-player" style="animation-delay: 0.1s;">
-                     <video id="customVideoPlayer" loop playsinline poster="https://placehold.co/640x360/000000/FF0000?text=Carregando+Vídeo...">
+                     <video id="customVideoPlayer" loop playsinline poster="https://placehold.co/640x360/000000/FFFFFF?text=Vídeo+sobre+a+Revolução+da+IA">
                         <source src="0518.mp4" type="video/mp4"> 
                         Seu navegador não suporta o elemento de vídeo.
                     </video>
-                    <div id="initialMuteOverlay" class="initial-mute-overlay">
-                        <button id="initialMuteButton" class="initial-mute-button"><i class="fas fa-volume-mute"></i></button>
-                    </div>
                     <div class="custom-video-controls">
                         <button id="playPauseBtn" class="custom-play-pause-button"><i class="fas fa-play"></i></button>
                         <div class="custom-progress-bar-container">
                             <div id="customVideoProgressBar" class="custom-progress-bar"></div>
                         </div>
-                        <button id="muteUnmuteCtrlBtn" class="custom-mute-button-controlbar"><i class="fas fa-volume-mute"></i></button>
+                        <button id="muteUnmuteCtrlBtn" class="custom-mute-button-controlbar"><i class="fas fa-volume-up"></i></button>
                     </div>
                 </div>
                 <div class="space-y-5 animate-on-scroll md:mt-0 mt-8" style="animation-delay: 0.2s;">
@@ -439,11 +418,11 @@
 
     <footer class="py-12 md:py-16 text-center bg-bg-primary border-t border-gray-700/20">
         <div class="container mx-auto px-4 sm:px-6">
-            <div class="footer-logo">
+             <div class="footer-logo mb-4">
                 <i class="fas fa-brain brain-icon"></i>
-                <span class="author-name">Fabio Riccardo</span>
+                <span class="author-name">FABIO RICCARDO</span>
             </div>
-            <p class="text-sm mt-4" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
+            <p class="text-sm" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
             <p class="text-xs mt-2" style="color: var(--text-medium); opacity:0.7;">Invista em você. O futuro é agora.</p>
         </div>
     </footer>
@@ -605,6 +584,7 @@
 
         if (customVideo && playPauseButton && customProgressBar && videoSectionForCustomPlayer && initialMuteOverlay && initialMuteButton && muteUnmuteCtrlBtn && videoPlayerContainer) {
             
+            customVideo.muted = true; 
             initialMuteOverlay.style.display = 'flex';
             muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
 
@@ -674,8 +654,8 @@
             customVideo.addEventListener('volumechange', () => {
                  if (customVideo.muted) {
                     muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                     if (initialMuteOverlay.style.display === 'none' && !customVideo.paused) { // Se o overlay já foi removido e o vídeo está tocando
-                        initialMuteOverlay.style.display = 'flex'; // Mostra o overlay de novo se mutar pelo controlbar
+                     if (initialMuteOverlay.style.display === 'none' && !customVideo.paused) { 
+                        initialMuteOverlay.style.display = 'flex'; 
                      }
                 } else {
                     muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Última Revolução: O Futuro da IA em Suas Mãos</title>
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23FF0000'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='55px' fill='white' font-weight='bold'>R</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -110,31 +111,6 @@
         }
         .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
         
-        .ebook-image-hero { 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 5px 10px rgba(0,0,0,0.2); 
-            transition: transform 0.3s ease-out;
-            max-width: 320px; 
-            width: 90%; 
-            aspect-ratio: 16 / 9; 
-            object-fit: cover; 
-            border-radius: 0.375rem; 
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid rgba(255,255,255,0.1); 
-        }
-         .ebook-image-hero:hover { transform: scale(1.02); }
-
-        .ebook-text-label { 
-            font-family: 'Anton', sans-serif;
-            font-size: 1.75rem; 
-            color: var(--text-light); 
-            letter-spacing: 1.5px;
-            margin-top: 0.75rem; 
-            margin-bottom: 1rem; 
-            text-transform: uppercase;
-        }
-         @media (min-width: 640px) { .ebook-text-label { font-size: 2.25rem; } }
-        
         .section-heading {
             font-size: 2rem; 
             font-weight: 900; 
@@ -160,7 +136,7 @@
             font-weight: 600; 
             color: var(--text-light); 
         }
-
+        
         @media (min-width: 640px) { 
             .hero-main-title { font-size: 4.5rem; } 
             .hero-subtitle { font-size: 1.25rem; }
@@ -211,22 +187,61 @@
         .security-seals i:hover { opacity: 0.9; color: var(--text-light); } 
         .security-seals span { font-size: 0.7rem; color: var(--text-medium); opacity: 0.6; display: block; margin-top: 4px; }
 
-        .embedded-video-container { /* Estilo para o container do vídeo */
+        .custom-video-player {
             width: 100%;
-            max-width: 560px; /* Ajuste para um tamanho razoável */
-            margin-left: auto;
-            margin-right: auto;
-            aspect-ratio: 16 / 9;
-            background-color: #111;
+            max-width: 640px; /* Ajuste conforme necessário */
+            margin: 0 auto;
+            position: relative;
+            background-color: #000;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .embedded-video-container video {
-            width: 100%;
-            height: 100%;
+        .custom-video-player video {
             display: block;
-            object-fit: cover;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .custom-video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .custom-video-player:hover .custom-video-controls,
+        .custom-video-player.controls-visible .custom-video-controls {
+            opacity: 1;
+        }
+        .custom-play-pause-button {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        .custom-progress-bar-container {
+            flex-grow: 1;
+            height: 8px;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0 10px;
+            border-radius: 4px;
+            cursor: default; /* Não permite clicar para avançar */
+            overflow: hidden;
+        }
+        .custom-progress-bar {
+            height: 100%;
+            background-color: var(--accent-red);
+            width: 85%; /* Começa quase cheio */
+            border-radius: 4px;
+            transition: width 0.1s linear;
         }
 
     </style>
@@ -250,13 +265,7 @@
                 A ÚLTIMA REVOLUÇÃO
             </h1>
             
-            <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-6a54-61f8-b93b-6c3a8ed52d4c/raw?se=2025-05-18T23%3A23%3A52Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=b64a43d9-3512-45c2-98b4-dea55d094240&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T09%3A14%3A40Z&ske=2025-05-19T09%3A14%3A40Z&sks=b&skv=2024-08-04&sig=wPb3jmhGkup1bbN/kO1I1xTlyySI%2B721d4%2BsnIOYRCM%3D" 
-                 alt="E-book A Última Revolução - Capa"
-                 class="ebook-image-hero mt-6 mb-4 sm:mt-8 sm:mb-5"
-                 style="animation-delay: 0.4s;"
-                 onerror="this.onerror=null;this.src='https://placehold.co/480x270/000000/FFFFFF?text=A+ÚLTIMA+REVOLUÇÃO';">
-            
-            <p class="ebook-text-label" style="animation-delay: 0.45s;">EBOOK</p>
+            <p class="ebook-text-label mt-8" style="animation-delay: 0.45s;">EBOOK</p>
             
             <div class="mt-2 sm:mt-4" style="animation-delay: 0.5s;">
                  <p class="mb-2 text-sm sm:text-base font-medium" style="color: var(--text-medium);">Sua chance de liderar a <strong class="highlight-red">próxima REVOLUÇÃO</strong> <strong class="urgent-text">TERMINA EM</strong>:</p>
@@ -279,26 +288,32 @@
             <div class="text-center mb-12 md:mb-16 animate-on-scroll">
                 <h2 class="section-heading mb-3">A <span class="highlight-red">REVOLUÇÃO</span> da IA Avança <span class="urgent-text">Rápido Demais</span>. Você Acompanha?</h2>
                 <p class="hero-subtitle max-w-3xl mx-auto mt-4" style="color: var(--text-medium);">
-                    A Inteligência Artificial está <strong class="highlight-red">reescrevendo as regras</strong> de todas as <strong class="highlight-red">revoluções</strong> anteriores. Descubra como usar esse poder a seu favor AGORA ou arrisque se tornar obsoleto.
+                    A Inteligência Artificial está <strong class="highlight-red">reescrevendo as regras</strong>. Descubra como usar esse poder a seu favor AGORA ou arrisque se tornar obsoleto.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div class="animate-on-scroll embedded-video-container" style="animation-delay: 0.1s;">
-                     <video id="sectionVideoPlayer" width="100%" height="100%" loop muted playsinline poster="https://placehold.co/560x315/000000/FF0000?text=Carregando+Vídeo...">
-                        <source src="https://drive.google.com/uc?export=download&id=1actQOLl3sLN0kQvdo-EAQGzQ77oevX1x" type="video/mp4">
+            <div class="grid md:grid-cols-1 gap-8 md:gap-12 items-center"> 
+                <div class="animate-on-scroll custom-video-player" style="animation-delay: 0.1s;">
+                     <video id="customVideoPlayer" loop muted playsinline poster="https://placehold.co/640x360/000000/FF0000?text=Carregando+Vídeo...">
+                        <source src="0518.mp4" type="video/mp4"> 
                         Seu navegador não suporta o elemento de vídeo.
                     </video>
+                    <div class="custom-video-controls">
+                        <button id="playPauseBtn" class="custom-play-pause-button"><i class="fas fa-play"></i></button>
+                        <div class="custom-progress-bar-container">
+                            <div id="customVideoProgressBar" class="custom-progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="space-y-5 animate-on-scroll" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">Sinais de que você <span class="urgent-text">PRECISA</span> entrar nesta <span class="highlight-red">REVOLUÇÃO</span>:</h3>
+                <div class="space-y-5 animate-on-scroll md:mt-0 mt-8" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-center md:text-left" style="color: var(--text-light);">Sinais de que você <span class="urgent-text">PRECISA</span> entrar nesta <span class="highlight-red">REVOLUÇÃO</span>:</h3>
                     <ul class="space-y-3">
                         <li class="flex items-start"><i class="fas fa-exclamation-circle icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Sente que seu conhecimento está ficando <strong class="highlight-red">ultrapassado</strong> frente às novas tecnologias?</span></li>
                         <li class="flex items-start"><i class="fas fa-question-circle icon-benefit"></i><span style="color: var(--text-medium);">Não sabe como a IA pode <strong class="highlight-red">realmente</strong> impulsionar seus resultados?</span></li>
                         <li class="flex items-start"><i class="fas fa-clock icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Vê outros aproveitando a <strong class="highlight-red">REVOLUÇÃO</strong> da IA e tem medo de perder o timing?</span></li>
                         <li class="flex items-start"><i class="fas fa-lightbulb icon-benefit"></i><span style="color: var(--text-medium);">Quer <strong class="highlight-red">inovar</strong> e liderar, mas não sabe por onde começar com IA?</span></li>
                     </ul>
-                    <p class="font-semibold text-lg pt-2" style="color: var(--text-light);">Se você se identificou, "A Última Revolução" é o <strong class="highlight-red">seu mapa</strong> para navegar e vencer nesta nova era.</p>
+                    <p class="font-semibold text-lg pt-2 text-center md:text-left" style="color: var(--text-light);">Se você se identificou, "A Última Revolução" é o <strong class="highlight-red">seu mapa</strong> para navegar e vencer nesta nova era.</p>
                 </div>
             </div>
         </div>
@@ -309,24 +324,16 @@
             <h2 class="section-heading text-center mb-4 animate-on-scroll">Sua Chave Para Dominar <span class="highlight-red">A Última REVOLUÇÃO</span>:</h2>
             <p class="hero-subtitle text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.1s;">"A ÚLTIMA REVOLUÇÃO" é o seu guia completo, direto ao ponto, para transformar a Inteligência Artificial em sua maior aliada estratégica e liderar as mudanças.</p>
             
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="order-2 md:order-1 space-y-5 animate-on-scroll" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">O que Você Vai Dominar para Liderar esta <span class="highlight-red">REVOLUÇÃO</span>:</h3>
-                    <ul class="list-none space-y-4">
-                        <li class="flex items-start"><i class="fas fa-brain icon-benefit"></i><div><strong style="color: var(--text-light);">As 4 Grandes Revoluções que Moldaram o Mundo:</strong> E como a IA se compara (e supera todas elas!).</div></li>
-                        <li class="flex items-start"><i class="fas fa-layer-group icon-benefit"></i><div><strong style="color: var(--text-light);">Surface AI vs. Deep AI:</strong> Entenda a diferença crucial e onde você se encaixa nesta <strong class="highlight-red">revolução</strong>.</div></li>
-                        <li class="flex items-start"><i class="fas fa-user-tie icon-benefit"></i><div><strong style="color: var(--text-light);">Impacto Real no Mercado Pós-Revolução:</strong> Profissões que somem, profissões que surgem. Esteja preparado!</div></li>
-                        <li class="flex items-start"><i class="fas fa-code icon-benefit"></i><div><strong style="color: var(--text-light);">Engenharia de Prompts na Prática:</strong> Fale a "língua" das IAs e extraia resultados PODEROSOS para esta nova era.</div></li>
-                        <li class="flex items-start"><i class="fas fa-rocket icon-benefit"></i><div><strong style="color: var(--text-light);">Lidere a Transformação Atual:</strong> Não apenas acompanhe, mas seja um agente de mudança com IA.</div></li>
-                    </ul>
-                    <p class="font-bold text-lg pt-3" style="color: var(--text-light);">Chega de teoria. É hora de <strong class="highlight-red">ação e resultados</strong> para vencer na <strong class="highlight-red">ÚLTIMA REVOLUÇÃO</strong>.</p>
-                </div>
-                <div class="order-1 md:order-2 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
-                     <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-6a54-61f8-b93b-6c3a8ed52d4c/raw?se=2025-05-18T23%3A23%3A52Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=b64a43d9-3512-45c2-98b4-dea55d094240&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-18T09%3A14%3A40Z&ske=2025-05-19T09%3A14%3A40Z&sks=b&skv=2024-08-04&sig=wPb3jmhGkup1bbN/kO1I1xTlyySI%2B721d4%2BsnIOYRCM%3D" 
-                        alt="Detalhe do E-book A Última Revolução" 
-                        class="ebook-image-hero w-full max-w-md" 
-                        onerror="this.onerror=null;this.src='https://placehold.co/480x270/000000/FFFFFF?text=Conteúdo+E-book';">
-                </div>
+            <div class="text-center animate-on-scroll" style="animation-delay: 0.2s;">
+                <h3 class="text-2xl font-bold mb-6" style="color: var(--text-light);">O que Você Vai Dominar para Liderar esta <span class="highlight-red">REVOLUÇÃO</span>:</h3>
+                <ul class="list-none space-y-4 inline-block text-left max-w-lg">
+                    <li class="flex items-start"><i class="fas fa-brain icon-benefit"></i><div><strong style="color: var(--text-light);">As 4 Grandes Revoluções que Moldaram o Mundo:</strong> E como a IA se compara (e supera todas elas!).</div></li>
+                    <li class="flex items-start"><i class="fas fa-layer-group icon-benefit"></i><div><strong style="color: var(--text-light);">Surface AI vs. Deep AI:</strong> Entenda a diferença crucial e onde você se encaixa nesta <strong class="highlight-red">revolução</strong>.</div></li>
+                    <li class="flex items-start"><i class="fas fa-user-tie icon-benefit"></i><div><strong style="color: var(--text-light);">Impacto Real no Mercado Pós-Revolução:</strong> Profissões que somem, profissões que surgem. Esteja preparado!</div></li>
+                    <li class="flex items-start"><i class="fas fa-code icon-benefit"></i><div><strong style="color: var(--text-light);">Engenharia de Prompts na Prática:</strong> Fale a "língua" das IAs e extraia resultados PODEROSOS para esta nova era.</div></li>
+                    <li class="flex items-start"><i class="fas fa-rocket icon-benefit"></i><div><strong style="color: var(--text-light);">Lidere a Transformação Atual:</strong> Não apenas acompanhe, mas seja um agente de mudança com IA.</div></li>
+                </ul>
+                <p class="font-bold text-lg pt-6" style="color: var(--text-light);">Chega de teoria. É hora de <strong class="highlight-red">ação e resultados</strong> para vencer na <strong class="highlight-red">ÚLTIMA REVOLUÇÃO</strong>.</p>
             </div>
         </div>
     </section>
@@ -493,9 +500,9 @@
         }
 
         function updateStockBar() {
-            const stockBar = document.getElementById('stockProgressBar');
-            const stockText = document.getElementById('stockStatusText');
-            if (!stockBar || !stockText) return;
+            const stockBarEl = document.getElementById('stockProgressBar');
+            const stockTextEl = document.getElementById('stockStatusText');
+            if (!stockBarEl || !stockTextEl) return;
 
             let currentStockPercentage = parseFloat(localStorage.getItem('ebookStockPercentage_vFinalAdjust'));
 
@@ -509,40 +516,75 @@
 
             localStorage.setItem('ebookStockPercentage_vFinalAdjust', currentStockPercentage.toFixed(2));
             
-            stockBar.style.width = currentStockPercentage + '%';
+            stockBarEl.style.width = currentStockPercentage + '%';
 
             if (currentStockPercentage <= 15) { 
-                stockText.innerHTML = `🔥 <strong class="urgent-text">CRÍTICO!</strong> Pouquíssimas unidades!`;
-                stockBar.style.background = 'var(--accent-red)'; 
-                stockBar.style.animation = 'none'; 
+                stockTextEl.innerHTML = `🔥 <strong class="urgent-text">CRÍTICO!</strong> Pouquíssimas unidades!`;
+                stockBarEl.style.background = 'var(--accent-red)'; 
+                stockBarEl.style.animation = 'none'; 
             } else if (currentStockPercentage <= 40) { 
-                stockText.innerHTML = `⏳ <strong class="highlight-red">ESTOQUE BAIXO!</strong> Garanta o seu agora!`; 
-                stockBar.style.backgroundImage = 'repeating-linear-gradient(45deg, var(--accent-red), var(--accent-red) 10px, var(--accent-red-darker) 10px, var(--accent-red-darker) 20px)'; 
-                stockBar.style.backgroundSize = '28px 28px';
-                stockBar.style.animation = 'animatedStripes 2s linear infinite';
+                stockTextEl.innerHTML = `⏳ <strong class="highlight-red">ESTOQUE BAIXO!</strong> Garanta o seu agora!`; 
+                stockBarEl.style.backgroundImage = 'repeating-linear-gradient(45deg, var(--accent-red), var(--accent-red) 10px, var(--accent-red-darker) 10px, var(--accent-red-darker) 20px)'; 
+                stockBarEl.style.backgroundSize = '28px 28px';
+                stockBarEl.style.animation = 'animatedStripes 2s linear infinite';
             } else {
-                stockText.innerHTML = `⚠️ Estoque limitado disponível. Aproveite!`;
-                stockBar.style.backgroundImage = 'repeating-linear-gradient(45deg, var(--accent-red), var(--accent-red) 10px, var(--accent-red-darker) 10px, var(--accent-red-darker) 20px)';
-                stockBar.style.backgroundSize = '28px 28px';
-                stockBar.style.animation = 'animatedStripes 2s linear infinite';
+                stockTextEl.innerHTML = `⚠️ Estoque limitado disponível. Aproveite!`;
+                stockBarEl.style.backgroundImage = 'repeating-linear-gradient(45deg, var(--accent-red), var(--accent-red) 10px, var(--accent-red-darker) 10px, var(--accent-red-darker) 20px)';
+                stockBarEl.style.backgroundSize = '28px 28px';
+                stockBarEl.style.animation = 'animatedStripes 2s linear infinite';
             }
         }
 
-        const videoElement = document.getElementById('sectionVideoPlayer'); // ID atualizado para o vídeo na seção correta
-        const videoSectionContainer = document.getElementById('problem-video-section'); // ID da seção que contém o vídeo
+        const customVideo = document.getElementById('customVideoPlayer');
+        const playPauseButton = document.getElementById('playPauseBtn');
+        const customProgressBar = document.getElementById('customVideoProgressBar');
+        const videoSectionForCustomPlayer = document.getElementById('problem-video-section');
 
-        if (videoElement && videoSectionContainer) {
-            const videoObserver = new IntersectionObserver((entries) => {
+        if (customVideo && playPauseButton && customProgressBar && videoSectionForCustomPlayer) {
+            const customVideoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        videoElement.play().catch(error => console.log("Erro ao tentar tocar o vídeo automaticamente:", error));
+                        customVideo.play().catch(error => console.log("Erro ao tocar vídeo customizado:", error));
                     } else {
-                        videoElement.pause();
+                        customVideo.pause();
                     }
                 });
-            }, { threshold: 0.5 }); 
+            }, { threshold: 0.5 });
 
-            videoObserver.observe(videoSectionContainer); // Observa a seção inteira
+            customVideoObserver.observe(videoSectionForCustomPlayer);
+
+            playPauseButton.addEventListener('click', () => {
+                if (customVideo.paused || customVideo.ended) {
+                    customVideo.play();
+                } else {
+                    customVideo.pause();
+                }
+            });
+
+            customVideo.addEventListener('play', () => {
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            });
+
+            customVideo.addEventListener('pause', () => {
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            });
+
+            customVideo.addEventListener('loadedmetadata', () => {
+                const initialProgress = 85; // Começa em 85%
+                customProgressBar.style.width = initialProgress + '%';
+            });
+            
+            customVideo.addEventListener('timeupdate', () => {
+                if (customVideo.duration) {
+                    const actualPercentage = (customVideo.currentTime / customVideo.duration) * 100;
+                    const visualStart = 85; // Onde a barra visualmente começa
+                    const visualRange = 100 - visualStart; // O range visual restante (15%)
+                    
+                    // Mapeia o progresso real (0-100%) para o range visual restante (85-100%)
+                    const progressBarPercentage = visualStart + (actualPercentage / 100) * visualRange;
+                    customProgressBar.style.width = progressBarPercentage + '%';
+                }
+            });
         }
         
         window.onload = function() {

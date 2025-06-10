@@ -15,6 +15,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
+    <!-- AOS (Animate On Scroll) Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -23,6 +26,10 @@
         :root {
             --neon-green: #00FF75;
             --dark-text: #1a202c;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -46,65 +53,33 @@
             100% { background-position: 200%; }
         }
 
-        /* Orbital badges animation */
-        .orbit-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            max-width: 450px; /* Adjust based on image size */
-            height: 450px;
-            pointer-events: none; /* Allows clicks to pass through */
+        /* Floating animation for badges */
+        @keyframes float-animation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
-        .badge {
+        /* Static badges styling */
+        .static-badge {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(5px);
             color: var(--dark-text);
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 9999px;
-            font-size: 0.75rem; /* 12px */
+            font-size: 0.8rem; /* 13px */
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             white-space: nowrap;
             border: 1px solid #e2e8f0;
-        }
-        
-        .badge-1 { animation: orbit1 12s linear infinite; }
-        .badge-2 { animation: orbit2 12s linear infinite; }
-        .badge-3 { animation: orbit3 12s linear infinite; }
-
-        @keyframes orbit1 {
-            from { transform: rotate(0deg) translateX(160px) rotate(0deg); }
-            to   { transform: rotate(360deg) translateX(160px) rotate(-360deg); }
-        }
-        @keyframes orbit2 {
-            from { transform: rotate(120deg) translateX(190px) rotate(-120deg); }
-            to   { transform: rotate(480deg) translateX(190px) rotate(-480deg); }
-        }
-        @keyframes orbit3 {
-            from { transform: rotate(240deg) translateX(170px) rotate(-240deg); }
-            to   { transform: rotate(600deg) translateX(170px) rotate(-600deg); }
-        }
-        
-        /* Responsive adjustments for orbit */
-        @media (min-width: 640px) {
-            @keyframes orbit1 {
-                from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
-                to   { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
-            }
-            @keyframes orbit2 {
-                from { transform: rotate(120deg) translateX(230px) rotate(-120deg); }
-                to   { transform: rotate(480deg) translateX(230px) rotate(-480deg); }
-            }
-            @keyframes orbit3 {
-                from { transform: rotate(240deg) translateX(210px) rotate(-240deg); }
-                to   { transform: rotate(600deg) translateX(210px) rotate(-600deg); }
-            }
+            transition: transform 0.3s ease;
+            animation: float-animation 6s ease-in-out infinite; /* Applying the float animation */
         }
 
+        .static-badge:hover {
+            transform: scale(1.05) translateY(0); /* Adjust hover to combine with float */
+        }
 
         /* Neon Glow Effect */
         .neon-glow {
@@ -116,19 +91,19 @@
             box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 30px var(--neon-green);
         }
 
-        /* Horizontal scroll feed styling */
-        .feed-container {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .feed-container::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
-        }
-
         /* Parallax effect element */
         #hero-image {
             transition: transform 0.2s ease-out;
         }
+        
+        /* To prevent horizontal scrollbar caused by AOS animations */
+        [data-aos] {
+            pointer-events: none;
+        }
+        .aos-animate {
+            pointer-events: auto;
+        }
+
     </style>
 </head>
 <body class="bg-white">
@@ -137,20 +112,18 @@
 
         <!-- 1. Hero Section -->
         <section id="hero" class="relative text-center min-h-screen flex flex-col items-center justify-center pt-24 pb-12 px-4 overflow-hidden">
-            <div class="relative w-full max-w-lg flex items-center justify-center">
-                <!-- Orbital Badges Container -->
-                <div class="orbit-container">
-                    <span class="badge badge-1">+10 anos com marcas</span>
-                    <span class="badge badge-2">Design + IA</span>
-                    <span class="badge badge-3">Resultados Reais</span>
-                </div>
-
+            <div class="relative w-full max-w-sm md:max-w-md flex items-center justify-center h-[65vh]">
                 <!-- Main Image with Parallax -->
                 <img id="hero-image" 
-                    src="https://placehold.co/400x600/ffffff/ffffff?text=F%C3%A1bio+Riccardo"
+                    src="https://placehold.co/400x600/ffffff/ffffff?text=F%C3%A1bio"
                     onerror="this.onerror=null;this.src='https://placehold.co/400x600/e0e0e0/333333?text=Imagem+Indispon%C3%ADvel';"
                     alt="Foto de corpo inteiro de Fábio Riccardo, especialista em branding" 
-                    class="max-h-[60vh] md:max-h-[70vh] object-contain z-10">
+                    class="max-h-full object-contain z-10">
+                
+                <!-- Floating Badges -->
+                <div class="static-badge z-20" style="top: 15%; left: 0%;">+5 anos com marcas</div>
+                <div class="static-badge z-20" style="top: 40%; right: -5%; animation-delay: -2s;">Design + IA</div>
+                <div class="static-badge z-20" style="bottom: 20%; left: -10%; animation-delay: -4s;">Resultados Reais</div>
             </div>
 
             <div class="relative z-20 mt-6">
@@ -164,105 +137,172 @@
 
         <!-- 2. About Me Section -->
         <section id="sobre" class="py-16 md:py-24 px-6 md:px-12 bg-gray-50">
-            <div class="max-w-3xl mx-auto text-center">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Marcas precisam de clareza, não de complexidade.</h2>
                 <div class="text-lg text-gray-700 space-y-4">
-                    <p>Com mais de uma década de experiência, descobri que o maior desafio das marcas não é a falta de ideias, mas a falta de uma direção clara. Meu trabalho é construir essa ponte entre a visão do negócio e a percepção do cliente.</p>
+                    <p>Com mais de 5 anos de experiência, descobri que o maior desafio das marcas não é a falta de ideias, mas a falta de uma direção clara. Meu trabalho é construir essa ponte entre a visão do negócio e a percepção do cliente.</p>
                     <p>Através da <span class="font-bold text-[var(--neon-green)] bg-gray-800 px-2 py-1 rounded">Engenharia de Marca Inteligente</span>, transformo marcas, tornando-as não apenas visualmente atraentes, mas estrategicamente inteligentes e prontas para o futuro. Também dedico parte da minha jornada a projetos sociais, pois acredito que o design tem o poder de gerar impacto real.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Portfolio & Methodology Section -->
-        <section id="metodologia" class="py-16 md:py-24 px-6 md:px-0">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Método, Serviços e Cases</h2>
-                <div class="flex overflow-x-auto space-x-6 md:space-x-8 pb-4 feed-container md:justify-center">
-                    
-                    <!-- Card: Metodologia -->
-                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-                        <h3 class="font-bold text-xl mb-4">Etapas do Método</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Diagnóstico</li>
-                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Estratégia</li>
-                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Design Inteligente</li>
-                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Conteúdo & Vídeo</li>
-                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>IA Aplicada</li>
-                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Tráfego & Análise</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Card: Serviços -->
-                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-                        <h3 class="font-bold text-xl mb-4">Serviços</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>Branding & Rebranding</li>
-                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>Design Estratégico</li>
-                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Produção de Vídeo</li>
-                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>Calendário Editorial</li>
-                        </ul>
-                    </div>
+        <!-- 3. Methodology Timeline Section -->
+        <section id="metodologia" class="py-16 md:py-24 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Nossa Metodologia</h2>
+                <div class="relative">
+                    <!-- The vertical line -->
+                    <div class="absolute left-4 md:left-1/2 w-0.5 h-full bg-gray-200" style="transform: translateX(-50%);"></div>
 
-                    <!-- Card: Skills -->
-                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
-                        <h3 class="font-bold text-xl mb-4">Ferramentas & Skills</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Canva</span>
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Premiere</span>
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">CapCut</span>
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">ChatGPT</span>
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Midjourney</span>
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Gestão de Tráfego</span>
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Copywriting</span>
+                    <!-- Timeline Item 1 -->
+                    <div class="relative mb-12" data-aos="fade-right">
+                        <div class="absolute w-8 h-8 bg-[var(--neon-green)] rounded-full text-black flex items-center justify-center font-bold left-4 md:left-1/2" style="transform: translateX(-50%);">1</div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pl-16">
+                            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-lg text-gray-800">Diagnóstico</h3>
+                                <p class="text-gray-600 mt-1 text-sm">Entendimento profundo do seu negócio, público e desafios atuais.</p>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Timeline Item 2 -->
+                    <div class="relative mb-12 flex justify-end" data-aos="fade-left">
+                        <div class="absolute w-8 h-8 bg-[var(--neon-green)] rounded-full text-black flex items-center justify-center font-bold right-auto left-4 md:right-1/2 md:left-auto" style="transform: translateX(-50%);">2</div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-16 md:text-right">
+                             <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-lg text-gray-800">Estratégia</h3>
+                                <p class="text-gray-600 mt-1 text-sm">Desenho do plano de marca, posicionamento e comunicação.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative mb-12" data-aos="fade-right">
+                        <div class="absolute w-8 h-8 bg-[var(--neon-green)] rounded-full text-black flex items-center justify-center font-bold left-4 md:left-1/2" style="transform: translateX(-50%);">3</div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pl-16">
+                            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-lg text-gray-800">Design Inteligente</h3>
+                                <p class="text-gray-600 mt-1 text-sm">Criação da identidade visual que traduz a estratégia em algo tangível.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 4 -->
+                    <div class="relative mb-12 flex justify-end" data-aos="fade-left">
+                        <div class="absolute w-8 h-8 bg-[var(--neon-green)] rounded-full text-black flex items-center justify-center font-bold right-auto left-4 md:right-1/2 md:left-auto" style="transform: translateX(-50%);">4</div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-16 md:text-right">
+                             <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-lg text-gray-800">Conteúdo & Vídeo</h3>
+                                <p class="text-gray-600 mt-1 text-sm">Produção de material relevante que conecta e engaja sua audiência.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                     <div class="relative mb-12" data-aos="fade-right">
+                        <div class="absolute w-8 h-8 bg-[var(--neon-green)] rounded-full text-black flex items-center justify-center font-bold left-4 md:left-1/2" style="transform: translateX(-50%);">5</div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pl-16">
+                            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-lg text-gray-800">IA Aplicada</h3>
+                                <p class="text-gray-600 mt-1 text-sm">Uso de inteligência artificial para otimizar processos e criatividade.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 6 -->
+                    <div class="relative mb-12 flex justify-end" data-aos="fade-left">
+                        <div class="absolute w-8 h-8 bg-[var(--neon-green)] rounded-full text-black flex items-center justify-center font-bold right-auto left-4 md:right-1/2 md:left-auto" style="transform: translateX(-50%);">6</div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-16 md:text-right">
+                             <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <h3 class="font-bold text-lg text-gray-800">Tráfego & Análise</h3>
+                                <p class="text-gray-600 mt-1 text-sm">Implementação e monitoramento de campanhas para resultados reais.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Services & Tools Section -->
+        <section id="servicos" class="py-16 md:py-24 px-6 md:px-12 bg-gray-50">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Serviços e Ferramentas</h2>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="font-bold text-2xl mb-6 text-center md:text-left">Serviços Prestados</h3>
+                        <ul class="space-y-4">
+                             <li class="flex items-start bg-white p-4 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 mt-1 text-[var(--neon-green)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg><div><h4 class="font-bold">Branding & Rebranding</h4><p class="text-gray-600 text-sm">Criação e renovação de marcas com propósito.</p></div></li>
+                            <li class="flex items-start bg-white p-4 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 mt-1 text-[var(--neon-green)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg><div><h4 class="font-bold">Design Estratégico</h4><p class="text-gray-600 text-sm">Identidade visual que comunica e converte.</p></div></li>
+                            <li class="flex items-start bg-white p-4 rounded-lg shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 mt-1 text-[var(--neon-green)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><div><h4 class="font-bold">Produção de Vídeo</h4><p class="text-gray-600 text-sm">Vídeos curtos e dinâmicos para redes sociais.</p></div></li>
+                        </ul>
+                    </div>
+                     <div data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="font-bold text-2xl mb-6 text-center md:text-left">Principais Ferramentas</h3>
+                        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                            <span class="bg-white text-gray-800 px-4 py-2 rounded-full text-base font-semibold shadow-sm border">Canva</span>
+                            <span class="bg-white text-gray-800 px-4 py-2 rounded-full text-base font-semibold shadow-sm border">Premiere</span>
+                            <span class="bg-white text-gray-800 px-4 py-2 rounded-full text-base font-semibold shadow-sm border">CapCut</span>
+                            <span class="bg-white text-gray-800 px-4 py-2 rounded-full text-base font-semibold shadow-sm border">ChatGPT</span>
+                            <span class="bg-white text-gray-800 px-4 py-2 rounded-full text-base font-semibold shadow-sm border">Midjourney</span>
+                            <span class="bg-white text-gray-800 px-4 py-2 rounded-full text-base font-semibold shadow-sm border">Gestão de Tráfego</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Cases Section -->
+        <section id="cases" class="py-16 md:py-24 px-6 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">Cases de Sucesso</h2>
+                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Card: Case Conecta -->
-                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/1a202c/00FF75?text=Case+Conecta" alt="Case de sucesso da marca Conecta" class="w-full h-32 object-cover">
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden group" data-aos="zoom-in-up" data-aos-delay="100">
+                        <img src="https://placehold.co/600x400/1a202c/00FF75?text=Case+Conecta" alt="Case de sucesso da marca Conecta" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                         <div class="p-6">
                             <h3 class="font-bold text-xl mb-2">Conecta</h3>
-                            <p class="text-gray-600 text-sm">Rebranding completo que resultou em <span class="font-bold">40% de aumento</span> no engajamento digital.</p>
+                            <p class="text-gray-600">Rebranding completo que resultou em <span class="font-bold">40% de aumento</span> no engajamento digital.</p>
                         </div>
                     </div>
 
                     <!-- Card: Case IPACE -->
-                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/1a202c/00FF75?text=Case+IPACE" alt="Case de sucesso da marca IPACE" class="w-full h-32 object-cover">
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden group" data-aos="zoom-in-up" data-aos-delay="200">
+                        <img src="https://placehold.co/600x400/1a202c/00FF75?text=Case+IPACE" alt="Case de sucesso da marca IPACE" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                         <div class="p-6">
                             <h3 class="font-bold text-xl mb-2">IPACE</h3>
-                            <p class="text-gray-600 text-sm">Criação de identidade visual e estratégia de conteúdo para projeto social de alto impacto.</p>
+                            <p class="text-gray-600">Criação de identidade visual e estratégia de conteúdo para projeto social de alto impacto.</p>
                         </div>
                     </div>
-
-                </div>
+                 </div>
             </div>
         </section>
 
-        <!-- 4. How AI helps Section -->
+
+        <!-- 6. How AI helps Section -->
         <section id="ia" class="py-16 md:py-24 px-6 md:px-12 bg-gray-900 text-white">
             <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Como a <span class="text-[var(--neon-green)]">Inteligência Artificial</span> entra no processo?</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10" data-aos="fade-up">Como a <span class="text-[var(--neon-green)]">Inteligência Artificial</span> entra no processo?</h2>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-gray-800 p-8 rounded-2xl">
+                    <div class="bg-gray-800 p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
                         <h3 class="text-xl font-bold mb-3 text-[var(--neon-green)]">Design Potencializado</h3>
-                        <p class="text-gray-300">Uso IA para gerar moodboards, testar variações de logos e criar patterns complexos, acelerando a fase criativa e garantindo um design único.</p>
+                        <p class="text-gray-300">Uso IA para gerar moodboards, testar variações de logos e criar patterns complexos, acelerando a fase criativa.</p>
                     </div>
-                    <div class="bg-gray-800 p-8 rounded-2xl">
+                    <div class="bg-gray-800 p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
                         <h3 class="text-xl font-bold mb-3 text-[var(--neon-green)]">Vídeos Otimizados</h3>
-                        <p class="text-gray-300">A IA auxilia na roteirização, legendagem automática e identificação dos melhores cortes, tornando a produção de vídeo mais ágil e eficaz.</p>
+                        <p class="text-gray-300">A IA auxilia na roteirização, legendagem e identificação dos melhores cortes, tornando a produção de vídeo mais ágil.</p>
                     </div>
-                    <div class="bg-gray-800 p-8 rounded-2xl">
+                    <div class="bg-gray-800 p-8 rounded-2xl transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
                         <h3 class="text-xl font-bold mb-3 text-[var(--neon-green)]">Conteúdo Inteligente</h3>
-                        <p class="text-gray-300">Desenvolvo calendários editoriais e copy com suporte de IA para analisar tendências, otimizar para SEO e garantir uma comunicação assertiva.</p>
+                        <p class="text-gray-300">Desenvolvo copy com suporte de IA para analisar tendências, otimizar para SEO e garantir uma comunicação assertiva.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. Final CTA Section -->
+        <!-- 7. Final CTA Section -->
         <section id="contato" class="py-20 md:py-32 text-center px-4">
-            <div class="max-w-2xl mx-auto">
+            <div class="max-w-2xl mx-auto" data-aos="zoom-in">
                 <h2 class="text-3xl md:text-4xl font-bold leading-tight">Sua marca precisa ser <span class="text-[var(--neon-green)] bg-gray-800 px-2 py-1 rounded">clara</span> antes de ser visível.</h2>
                 <p class="mt-4 mb-10 text-lg text-gray-600">Vamos descobrir juntos o potencial da sua marca? A primeira conversa é por minha conta.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -281,16 +321,23 @@
         <p class="text-gray-500">&copy; <span id="year"></span> Fábio Riccardo. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- AOS (Animate On Scroll) Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+            once: true, // whether animation should happen only once - while scrolling down
+        });
+        
         // Simple Parallax effect for the hero image
         window.addEventListener('scroll', function() {
             const heroImage = document.getElementById('hero-image');
-            // Ensure the element exists before trying to access its properties
             if (heroImage) {
               const scrollPosition = window.pageYOffset;
-              // Apply transform. The division factor (e.g., 3) controls the speed of the parallax effect.
-              // A larger number means a slower, more subtle effect.
-              heroImage.style.transform = `translateY(${scrollPosition / 4}px)`;
+              // Reduce parallax effect slightly for more subtlety
+              heroImage.style.transform = `translateY(${scrollPosition / 5}px)`;
             }
         });
 

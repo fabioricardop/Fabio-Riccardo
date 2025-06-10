@@ -1,753 +1,301 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Última Revolução: O Futuro da IA em Suas Mãos</title>
-    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23FF0000'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='55px' fill='white' font-weight='bold'>R</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- SEO Meta Tags -->
+    <title>Fábio Riccardo | Engenharia de Marca Inteligente</title>
+    <meta name="description" content="Portfólio de Fábio Riccardo. Especialista em branding e rebranding que une estratégia, design e inteligência artificial para construir marcas fortes.">
+    <meta name="keywords" content="Fábio Riccardo, Branding, Rebranding, Design Estratégico, IA, Inteligência Artificial, Marca, Portfólio">
+    <meta name="author" content="Fábio Riccardo">
 
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS for animations and specific styles -->
     <style>
         :root {
-            --bg-primary: #000000; 
-            --bg-secondary: #000000; 
-            --text-light: #FFFFFF; 
-            --text-medium: #A0A0A0; 
-            --text-dark: #000000; 
-
-            --accent-red: #FF0000; 
-            --accent-red-darker: #CC0000; 
-            --accent-green-matrix: #39FF14;
-            --accent-green-matrix-darker: #2FAF0F;
+            --neon-green: #00FF75;
+            --dark-text: #1a202c;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-light);
-            overscroll-behavior-y: contain;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: var(--dark-text);
         }
 
-        #scroll-progress-bar-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: rgba(57, 255, 20, 0.1); 
-            z-index: 10000;
-        }
-        #scroll-progress-bar {
-            height: 100%;
-            background: var(--accent-green-matrix); 
-            width: 0%;
-            border-radius: 0 2px 2px 0;
-            transition: width 0.1s ease-out;
+        /* Metallic text effect */
+        .metallic-text {
+            background: linear-gradient(145deg, #a0a0a0, #f0f0f0, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: shine 5s infinite linear;
         }
 
-        .button-cta-main {
-            background-color: var(--accent-green-matrix); 
-            color: var(--text-dark); 
-            font-weight: 800;
-            padding: 0.875rem 1.75rem; 
-            border-radius: 0.5rem; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.2s ease-out;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.5), 0 0 5px rgba(57, 255, 20, 0.7); 
-            border: 1px solid var(--accent-green-matrix);
-            animation: pulseButtonGreen 2.5s infinite ease-in-out;
+        @keyframes shine {
+            0% { background-position: -200%; }
+            100% { background-position: 200%; }
         }
 
-        @keyframes pulseButtonGreen {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 15px rgba(57, 255, 20, 0.5), 0 0 5px rgba(57, 255, 20, 0.7);
-            }
-            50% {
-                transform: scale(1.04);
-                box-shadow: 0 0 25px rgba(57, 255, 20, 0.7), 0 0 10px rgba(57, 255, 20, 0.9);
-            }
-        }
-
-        .button-cta-main:hover {
-            background-color: var(--accent-green-matrix-darker); 
-            transform: translateY(-2px) scale(1.06);
-            animation-play-state: paused;
-        }
-        .button-cta-main:active { transform: translateY(-1px) scale(0.98); }
-
-        .countdown-block {
-            background-color: rgba(255,0,0,0.05); 
-            border: 1px solid var(--accent-red);
-            padding: 8px; 
-            border-radius: 4px; 
-            min-width: 50px; 
-            text-align: center;
-        }
-        .countdown-block span { font-size: 1.5rem; font-weight: 900; color: var(--accent-red); }
-        .countdown-block p { font-size: 0.6rem; text-transform: uppercase; color: var(--text-medium); margin-top: 1px; }
-
-        .icon-benefit {
-            font-size: 1.25rem;
-            margin-right: 0.75rem;
-            width: 28px;
-            text-align: center;
-            color: var(--accent-red); 
-        }
-        .icon-benefit.success-icon { 
-            color: var(--text-light); 
-        }
-        .icon-benefit.guarantee-icon { 
-             color: var(--text-light); 
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(20px); 
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
-        }
-        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-        
-        .section-heading {
-            font-size: 2rem; 
-            font-weight: 900; 
-            color: var(--text-light);
-            line-height: 1.2;
-        }
-        @media (min-width: 640px) { .section-heading { font-size: 2.25rem; } }
-        @media (min-width: 768px) { .section-heading { font-size: 2.75rem; } }
-
-        .hero-main-title { 
-            font-family: 'Anton', sans-serif; 
-            font-size: 3rem; 
-            line-height: 1;
-            letter-spacing: 1px; 
-            color: var(--text-light); 
-        }
-        .hero-subtitle { 
-            font-size: 1.125rem; 
-            line-height: 1.5; 
-        }
-        .hero-intro-text { 
-            font-size: 1.25rem; 
-            font-weight: 600; 
-            color: var(--text-light); 
-        }
-        
-        @media (min-width: 640px) { 
-            .hero-main-title { font-size: 4.5rem; } 
-            .hero-subtitle { font-size: 1.25rem; }
-            .hero-intro-text { font-size: 1.5rem; }
-        }
-         @media (min-width: 768px) { 
-            .hero-main-title { font-size: 5.5rem; } 
-            .hero-subtitle { font-size: 1.5rem; }
-            .hero-intro-text { font-size: 1.75rem; }
-        }
-
-        .highlight-red { color: var(--accent-red); } 
-        .urgent-text { color: var(--accent-red); }
-        .success-text { color: var(--text-light); } 
-
-        .card-offer {
-            background-color: #0F0F0F; 
-            border: 1px solid var(--accent-red); 
-            box-shadow: 0 0 20px rgba(255,0,0,0.2); 
-        }
-        
-        .stock-bar-container {
-            background-color: rgba(255,0,0,0.1); 
-            border-radius: 8px;
-            padding: 4px;
-            margin: 12px 0 20px; 
-            border: 1px solid rgba(255,0,0,0.2);
-            overflow: hidden; 
-        }
-        .stock-bar {
-            height: 12px; 
-            border-radius: 5px;
-            transition: width 1.5s ease-out; 
-        }
-
-        @keyframes animatedStripes {
-            0% { background-position: 0 0; }
-            100% { background-position: 28px 0; } 
-        }
-
-        .stock-text { font-size: 0.8rem; color: var(--text-medium); margin-top: 6px; font-weight: 500; }
-
-        .security-seals {
-            margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); 
-            display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; 
-        }
-        .security-seals i { font-size: 1.75rem; color: var(--text-medium); opacity: 0.6; transition: opacity 0.2s ease, color 0.2s ease; }
-        .security-seals i:hover { opacity: 0.9; color: var(--text-light); } 
-        .security-seals span { font-size: 0.7rem; color: var(--text-medium); opacity: 0.6; display: block; margin-top: 4px; }
-
-        .custom-video-player {
-            width: 100%;
-            max-width: 640px;
-            margin: 0 auto;
-            position: relative;
-            background-color: #000;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .custom-video-player video {
-            display: block;
-            width: 100%;
-            height: auto; 
-            border-radius: 8px;
-        }
-        .initial-mute-overlay {
+        /* Orbital badges animation */
+        .orbit-container {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 10;
-            cursor: pointer;
-        }
-        .initial-mute-button {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 4rem; 
-            animation: blinkMuteIconLarge 1.5s infinite;
-        }
-        @keyframes blinkMuteIconLarge {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1);}
+            max-width: 450px; /* Adjust based on image size */
+            height: 450px;
+            pointer-events: none; /* Allows clicks to pass through */
         }
 
-        .custom-video-controls {
+        .badge {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 8px 12px; 
-            background-color: rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 5; 
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            color: var(--dark-text);
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem; /* 12px */
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            white-space: nowrap;
+            border: 1px solid #e2e8f0;
         }
-        .custom-video-player.controls-visible .custom-video-controls,
-        .custom-video-player video:paused + .initial-mute-overlay + .custom-video-controls { 
-            opacity: 1;
-            visibility: visible;
+        
+        .badge-1 { animation: orbit1 12s linear infinite; }
+        .badge-2 { animation: orbit2 12s linear infinite; }
+        .badge-3 { animation: orbit3 12s linear infinite; }
+
+        @keyframes orbit1 {
+            from { transform: rotate(0deg) translateX(160px) rotate(0deg); }
+            to   { transform: rotate(360deg) translateX(160px) rotate(-360deg); }
         }
-         .custom-video-player:hover .custom-video-controls {
-             opacity: 1;
-             visibility: visible;
+        @keyframes orbit2 {
+            from { transform: rotate(120deg) translateX(190px) rotate(-120deg); }
+            to   { transform: rotate(480deg) translateX(190px) rotate(-480deg); }
+        }
+        @keyframes orbit3 {
+            from { transform: rotate(240deg) translateX(170px) rotate(-240deg); }
+            to   { transform: rotate(600deg) translateX(170px) rotate(-600deg); }
+        }
+        
+        /* Responsive adjustments for orbit */
+        @media (min-width: 640px) {
+            @keyframes orbit1 {
+                from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+                to   { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+            }
+            @keyframes orbit2 {
+                from { transform: rotate(120deg) translateX(230px) rotate(-120deg); }
+                to   { transform: rotate(480deg) translateX(230px) rotate(-480deg); }
+            }
+            @keyframes orbit3 {
+                from { transform: rotate(240deg) translateX(210px) rotate(-240deg); }
+                to   { transform: rotate(600deg) translateX(210px) rotate(-600deg); }
+            }
         }
 
-        .custom-play-pause-button, .custom-mute-button-controlbar {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.25rem; 
-            cursor: pointer;
-            padding: 5px 8px;
-        }
-        .custom-progress-bar-container {
-            flex-grow: 1;
-            height: 6px; 
-            background-color: rgba(255,255,255,0.3);
-            margin: 0 10px;
-            border-radius: 3px;
-            cursor: default; 
-            overflow: hidden;
-        }
-        .custom-progress-bar {
-            height: 100%;
-            background-color: var(--accent-red);
-            width: 85%; 
-            border-radius: 3px;
-            transition: width 0.1s linear;
-        }
-        .page-top-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 1.5rem; 
-            padding-bottom: 1rem;
-        }
-        .page-top-logo .author-name {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.75rem; /* Aumentado para destaque */
-            color: var(--text-light);
-            letter-spacing: 1px;
-            text-transform: uppercase; 
-        }
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-        .footer-logo .logo-icon {
-            font-size: 2.5rem; 
-            color: var(--accent-red); 
-            margin-right: 0.75rem;
-        }
-        .footer-logo .author-name {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.75rem; 
-            color: var(--text-light);
-            letter-spacing: 1px;
+
+        /* Neon Glow Effect */
+        .neon-glow {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
         }
 
+        .neon-glow:hover {
+            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 30px var(--neon-green);
+        }
+
+        /* Horizontal scroll feed styling */
+        .feed-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .feed-container::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        /* Parallax effect element */
+        #hero-image {
+            transition: transform 0.2s ease-out;
+        }
     </style>
 </head>
-<body>
+<body class="bg-white">
 
-    <div id="scroll-progress-bar-container">
-        <div id="scroll-progress-bar"></div>
-    </div>
+    <main class="overflow-x-hidden">
 
-    <section class="flex flex-col justify-center items-center text-center py-10 sm:py-16 px-4 relative overflow-hidden" 
-             style="background-color: var(--bg-primary); min-height: calc(100vh - 60px);">
-        
-        <div class="relative z-10 animate-on-scroll w-full max-w-xl">
-            <div class="page-top-logo">
-                <span class="author-name">FABIO RICCARDO</span>
-            </div>
-
-            <p class="hero-intro-text mb-2 sm:mb-3 mt-4" style="animation-delay: 0.1s;">O FUTURO CHEGOU.</p>
-            <p class="hero-subtitle mb-4 sm:mb-5" style="color: var(--text-medium); animation-delay: 0.2s;">
-                Você está <strong class="text-light">DENTRO</strong> ou <strong class="urgent-text">FORA</strong> desta <strong class="highlight-red">REVOLUÇÃO</strong>?
-            </p>
-            
-            <h1 class="hero-main-title my-4 sm:my-5" style="animation-delay: 0.3s;">
-                A ÚLTIMA REVOLUÇÃO
-            </h1>
-            
-            <p class="ebook-text-label mt-8" style="animation-delay: 0.45s;">EBOOK</p>
-            
-            <div class="mt-2 sm:mt-4" style="animation-delay: 0.5s;">
-                 <p class="mb-2 text-sm sm:text-base font-medium" style="color: var(--text-medium);">Sua chance de liderar a <strong class="highlight-red">próxima REVOLUÇÃO</strong> <strong class="urgent-text">TERMINA EM</strong>:</p>
-                <div id="countdown" class="flex justify-center gap-2 mb-5 sm:mb-6">
-                    <div class="countdown-block"> <span id="days">00</span><p>Dias</p> </div>
-                    <div class="countdown-block"> <span id="hours">00</span><p>Horas</p> </div>
-                    <div class="countdown-block"> <span id="minutes">00</span><p>Min</p> </div>
-                    <div class="countdown-block"> <span id="seconds">00</span><p>Seg</p> </div>
+        <!-- 1. Hero Section -->
+        <section id="hero" class="relative text-center min-h-screen flex flex-col items-center justify-center pt-24 pb-12 px-4 overflow-hidden">
+            <div class="relative w-full max-w-lg flex items-center justify-center">
+                <!-- Orbital Badges Container -->
+                <div class="orbit-container">
+                    <span class="badge badge-1">+10 anos com marcas</span>
+                    <span class="badge badge-2">Design + IA</span>
+                    <span class="badge badge-3">Resultados Reais</span>
                 </div>
-                <button onclick="handlePurchase()" class="button-cta-main text-sm sm:text-base"> 
-                    <i class="fas fa-bolt mr-1 sm:mr-2"></i> ENTRAR NA REVOLUÇÃO AGORA!
-                </button>
-                <p class="mt-3 text-xs" style="color: var(--text-medium); opacity:0.8;">(Oferta Exclusiva de Lançamento!)</p>
-            </div>
-        </div>
-    </section>
 
-    <section id="problem-video-section" class="py-16 md:py-20 bg-bg-primary">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12 md:mb-16 animate-on-scroll">
-                <h2 class="section-heading mb-3">A <span class="highlight-red">REVOLUÇÃO</span> da IA Avança <span class="urgent-text">Rápido Demais</span>. Você Acompanha?</h2>
-                <p class="hero-subtitle max-w-3xl mx-auto mt-4" style="color: var(--text-medium);">
-                    A Inteligência Artificial está <strong class="highlight-red">reescrevendo as regras</strong>. Descubra como usar esse poder a seu favor AGORA ou arrisque se tornar obsoleto.
-                </p>
+                <!-- Main Image with Parallax -->
+                <img id="hero-image" 
+                    src="https://placehold.co/400x600/ffffff/ffffff?text=F%C3%A1bio+Riccardo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x600/e0e0e0/333333?text=Imagem+Indispon%C3%ADvel';"
+                    alt="Foto de corpo inteiro de Fábio Riccardo, especialista em branding" 
+                    class="max-h-[60vh] md:max-h-[70vh] object-contain z-10">
             </div>
 
-            <div class="grid md:grid-cols-1 gap-8 md:gap-12 items-center"> 
-                <div class="animate-on-scroll custom-video-player" style="animation-delay: 0.1s;">
-                     <video id="customVideoPlayer" loop playsinline poster="https://placehold.co/640x360/000000/FFFFFF?text=Vídeo+sobre+a+Revolução+da+IA">
-                        <source src="0518.mp4" type="video/mp4"> 
-                        Seu navegador não suporta o elemento de vídeo.
-                    </video>
-                    <div id="initialMuteOverlay" class="initial-mute-overlay">
-                        <button id="initialMuteButton" class="initial-mute-button"><i class="fas fa-volume-mute"></i></button>
+            <div class="relative z-20 mt-6">
+                <h1 class="text-4xl md:text-5xl font-bold metallic-text">Fábio Riccardo</h1>
+                <p class="mt-2 text-lg md:text-xl text-gray-600">Branding e Rebranding com estratégia e inteligência.</p>
+                <a href="#contato" class="inline-block mt-8 px-8 py-3 bg-[var(--neon-green)] text-black font-bold rounded-full text-lg neon-glow transition-transform duration-300 hover:scale-105">
+                    Agende seu Diagnóstico
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. About Me Section -->
+        <section id="sobre" class="py-16 md:py-24 px-6 md:px-12 bg-gray-50">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Marcas precisam de clareza, não de complexidade.</h2>
+                <div class="text-lg text-gray-700 space-y-4">
+                    <p>Com mais de uma década de experiência, descobri que o maior desafio das marcas não é a falta de ideias, mas a falta de uma direção clara. Meu trabalho é construir essa ponte entre a visão do negócio e a percepção do cliente.</p>
+                    <p>Através da <span class="font-bold text-[var(--neon-green)] bg-gray-800 px-2 py-1 rounded">Engenharia de Marca Inteligente</span>, transformo marcas, tornando-as não apenas visualmente atraentes, mas estrategicamente inteligentes e prontas para o futuro. Também dedico parte da minha jornada a projetos sociais, pois acredito que o design tem o poder de gerar impacto real.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Portfolio & Methodology Section -->
+        <section id="metodologia" class="py-16 md:py-24 px-6 md:px-0">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Método, Serviços e Cases</h2>
+                <div class="flex overflow-x-auto space-x-6 md:space-x-8 pb-4 feed-container md:justify-center">
+                    
+                    <!-- Card: Metodologia -->
+                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="font-bold text-xl mb-4">Etapas do Método</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Diagnóstico</li>
+                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Estratégia</li>
+                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Design Inteligente</li>
+                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Conteúdo & Vídeo</li>
+                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>IA Aplicada</li>
+                            <li class="flex items-center"><span class="text-[var(--neon-green)] mr-3">●</span>Tráfego & Análise</li>
+                        </ul>
                     </div>
-                    <div class="custom-video-controls">
-                        <button id="playPauseBtn" class="custom-play-pause-button"><i class="fas fa-play"></i></button>
-                        <div class="custom-progress-bar-container">
-                            <div id="customVideoProgressBar" class="custom-progress-bar"></div>
+                    
+                    <!-- Card: Serviços -->
+                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="font-bold text-xl mb-4">Serviços</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>Branding & Rebranding</li>
+                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>Design Estratégico</li>
+                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Produção de Vídeo</li>
+                            <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-1 text-[var(--neon-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>Calendário Editorial</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card: Skills -->
+                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="font-bold text-xl mb-4">Ferramentas & Skills</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Canva</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Premiere</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">CapCut</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">ChatGPT</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Midjourney</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Gestão de Tráfego</span>
+                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Copywriting</span>
                         </div>
-                        <button id="muteUnmuteCtrlBtn" class="custom-mute-button-controlbar"><i class="fas fa-volume-mute"></i></button>
+                    </div>
+
+                    <!-- Card: Case Conecta -->
+                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/1a202c/00FF75?text=Case+Conecta" alt="Case de sucesso da marca Conecta" class="w-full h-32 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Conecta</h3>
+                            <p class="text-gray-600 text-sm">Rebranding completo que resultou em <span class="font-bold">40% de aumento</span> no engajamento digital.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card: Case IPACE -->
+                    <div class="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/1a202c/00FF75?text=Case+IPACE" alt="Case de sucesso da marca IPACE" class="w-full h-32 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">IPACE</h3>
+                            <p class="text-gray-600 text-sm">Criação de identidade visual e estratégia de conteúdo para projeto social de alto impacto.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. How AI helps Section -->
+        <section id="ia" class="py-16 md:py-24 px-6 md:px-12 bg-gray-900 text-white">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Como a <span class="text-[var(--neon-green)]">Inteligência Artificial</span> entra no processo?</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-gray-800 p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--neon-green)]">Design Potencializado</h3>
+                        <p class="text-gray-300">Uso IA para gerar moodboards, testar variações de logos e criar patterns complexos, acelerando a fase criativa e garantindo um design único.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--neon-green)]">Vídeos Otimizados</h3>
+                        <p class="text-gray-300">A IA auxilia na roteirização, legendagem automática e identificação dos melhores cortes, tornando a produção de vídeo mais ágil e eficaz.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--neon-green)]">Conteúdo Inteligente</h3>
+                        <p class="text-gray-300">Desenvolvo calendários editoriais e copy com suporte de IA para analisar tendências, otimizar para SEO e garantir uma comunicação assertiva.</p>
                     </div>
                 </div>
-                <div class="space-y-5 animate-on-scroll md:mt-0 mt-8" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold text-center md:text-left" style="color: var(--text-light);">Sinais de que você <span class="urgent-text">PRECISA</span> entrar nesta <span class="highlight-red">REVOLUÇÃO</span>:</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start"><i class="fas fa-exclamation-circle icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Sente que seu conhecimento está ficando <strong class="highlight-red">ultrapassado</strong> frente às novas tecnologias?</span></li>
-                        <li class="flex items-start"><i class="fas fa-question-circle icon-benefit"></i><span style="color: var(--text-medium);">Não sabe como a IA pode <strong class="highlight-red">realmente</strong> impulsionar seus resultados?</span></li>
-                        <li class="flex items-start"><i class="fas fa-clock icon-benefit urgent-text"></i><span style="color: var(--text-medium);">Vê outros aproveitando a <strong class="highlight-red">REVOLUÇÃO</strong> da IA e tem medo de perder o timing?</span></li>
-                        <li class="flex items-start"><i class="fas fa-lightbulb icon-benefit"></i><span style="color: var(--text-medium);">Quer <strong class="highlight-red">inovar</strong> e liderar, mas não sabe por onde começar com IA?</span></li>
-                    </ul>
-                    <p class="font-semibold text-lg pt-2 text-center md:text-left" style="color: var(--text-light);">Se você se identificou, "A Última Revolução" é o <strong class="highlight-red">seu mapa</strong> para navegar e vencer nesta nova era.</p>
+            </div>
+        </section>
+
+        <!-- 5. Final CTA Section -->
+        <section id="contato" class="py-20 md:py-32 text-center px-4">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight">Sua marca precisa ser <span class="text-[var(--neon-green)] bg-gray-800 px-2 py-1 rounded">clara</span> antes de ser visível.</h2>
+                <p class="mt-4 mb-10 text-lg text-gray-600">Vamos descobrir juntos o potencial da sua marca? A primeira conversa é por minha conta.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20F%C3%A1bio!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20falar%20sobre%20minha%20marca." target="_blank" class="w-full sm:w-auto px-8 py-4 bg-gray-800 text-white font-bold rounded-full text-lg transition-transform duration-300 hover:scale-105">
+                        Fale agora no WhatsApp
+                    </a>
+                    <a href="#" class="w-full sm:w-auto px-8 py-4 bg-[var(--neon-green)] text-black font-bold rounded-full text-lg transition-transform duration-300 hover:scale-105">
+                        Diagnóstico Gratuito
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
     
-    <section id="ebook-details" class="py-16 md:py-20" style="background-color: var(--bg-secondary);">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="section-heading text-center mb-4 animate-on-scroll">Sua Chave Para Dominar <span class="highlight-red">A Última REVOLUÇÃO</span>:</h2>
-            <p class="hero-subtitle text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.1s;">"A ÚLTIMA REVOLUÇÃO" é o seu guia completo, direto ao ponto, para transformar a Inteligência Artificial em sua maior aliada estratégica e liderar as mudanças.</p>
-            
-            <div class="text-center animate-on-scroll" style="animation-delay: 0.2s;">
-                <h3 class="text-2xl font-bold mb-6" style="color: var(--text-light);">O que Você Vai Dominar para Liderar esta <span class="highlight-red">REVOLUÇÃO</span>:</h3>
-                <ul class="list-none space-y-4 inline-block text-left max-w-lg">
-                    <li class="flex items-start"><i class="fas fa-brain icon-benefit"></i><div><strong style="color: var(--text-light);">As 4 Grandes Revoluções que Moldaram o Mundo:</strong> E como a IA se compara (e supera todas elas!).</div></li>
-                    <li class="flex items-start"><i class="fas fa-layer-group icon-benefit"></i><div><strong style="color: var(--text-light);">Surface AI vs. Deep AI:</strong> Entenda a diferença crucial e onde você se encaixa nesta <strong class="highlight-red">revolução</strong>.</div></li>
-                    <li class="flex items-start"><i class="fas fa-user-tie icon-benefit"></i><div><strong style="color: var(--text-light);">Impacto Real no Mercado Pós-Revolução:</strong> Profissões que somem, profissões que surgem. Esteja preparado!</div></li>
-                    <li class="flex items-start"><i class="fas fa-code icon-benefit"></i><div><strong style="color: var(--text-light);">Engenharia de Prompts na Prática:</strong> Fale a "língua" das IAs e extraia resultados PODEROSOS para esta nova era.</div></li>
-                    <li class="flex items-start"><i class="fas fa-rocket icon-benefit"></i><div><strong style="color: var(--text-light);">Lidere a Transformação Atual:</strong> Não apenas acompanhe, mas seja um agente de mudança com IA.</div></li>
-                </ul>
-                <p class="font-bold text-lg pt-6" style="color: var(--text-light);">Chega de teoria. É hora de <strong class="highlight-red">ação e resultados</strong> para vencer na <strong class="highlight-red">ÚLTIMA REVOLUÇÃO</strong>.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="oferta" class="py-16 md:py-24 bg-bg-primary text-white">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-            <i class="fas fa-star text-light text-4xl mb-6 animate-on-scroll"></i> 
-            <h2 class="section-heading mb-4 animate-on-scroll" style="animation-delay: 0.1s;">Sua <span class="highlight-red">Decisão Inteligente</span> para esta <span class="highlight-red">REVOLUÇÃO</span> Começa AGORA.</h2>
-            <p class="hero-subtitle max-w-3xl mx-auto mb-10 animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.2s;">
-                Por menos que um lanche, você acessa o conhecimento que pode <strong class="highlight-red">transformar sua carreira e visão de futuro</strong>. Não perca esta janela de oportunidade na <strong class="highlight-red">ÚLTIMA REVOLUÇÃO</strong>.
-            </p>
-            <div class="card-offer text-light p-6 sm:p-8 md:p-10 rounded-xl inline-block max-w-md mx-auto animate-on-scroll" style="animation-delay: 0.3s;">
-                <h3 class="text-2xl font-bold mb-2" style="color: var(--accent-red);">"A ÚLTIMA REVOLUÇÃO"</h3>
-                <p class="text-sm mb-4" style="color: var(--text-medium);">Seu Guia Essencial para a Era da Inteligência Artificial.</p>
-                
-                <div class="stock-bar-container">
-                    <div id="stockProgressBar" class="stock-bar"></div> 
-                </div>
-                <p id="stockStatusText" class="stock-text urgent-text">🔥 QUASE ESGOTADO! Pouquíssimas unidades restantes.</p>
-                
-                <p class="my-3" style="color: var(--text-medium);">De <span class="line-through">R$97,00</span> por APENAS:</p>
-                <p class="text-5xl sm:text-6xl font-black text-accent-red mb-2">R$ 20<span class="text-2xl">,00</span></p>
-                <p class="text-sm font-semibold mb-6 success-text">(Pagamento ÚNICO. Acesso VITALÍCIO!)</p>
-
-                <ul class="text-left space-y-3 mb-8 text-sm sm:text-base" style="color: var(--text-medium);">
-                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-icon"></i><span>Conteúdo prático e direto ao ponto.</span></li>
-                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-icon"></i><span>Linguagem clara, sem enrolação.</span></li>
-                    <li class="flex items-start"><i class="fas fa-check-circle icon-benefit success-icon"></i><span>Acesso imediato e para sempre.</span></li>
-                    <li class="flex items-start"><i class="fas fa-shield-alt icon-benefit guarantee-icon"></i><span><strong class="text-light">RISCO ZERO:</strong> 7 Dias de Garantia Total!</span></li>
-                </ul>
-                <button onclick="handlePurchase()" class="w-full button-cta-main text-lg shadow-lg">
-                    <i class="fas fa-lock mr-2"></i> QUERO MEU ACESSO IMEDIATO À REVOLUÇÃO!
-                </button>
-                <p class="text-xs mt-4" style="color: var(--text-medium); opacity:0.8;">Compra 100% Segura. Entrega Digital na Hora.</p>
-                
-                <div class="security-seals">
-                    <div> <i class="fas fa-shield-alt" title="Compra Segura"></i> <span>Compra Segura</span> </div>
-                    <div> <i class="fas fa-lock" title="Privacidade Garantida"></i> <span>Dados Protegidos</span> </div>
-                    <div> <i class="fas fa-check-circle" title="Qualidade Verificada"></i> <span>Conteúdo Verificado</span> </div>
-                    <div> <i class="fab fa-cc-visa" title="Aceitamos Visa"></i> </div>
-                    <div> <i class="fab fa-cc-mastercard" title="Aceitamos Mastercard"></i> </div>
-                </div>
-            </div>
-             <p class="mt-10 text-base animate-on-scroll" style="color: var(--text-medium); animation-delay: 0.4s;">
-                <strong class="urgent-text">ATENÇÃO:</strong> Este preço promocional é <strong class="highlight-red">exclusivo para esta página</strong> e pode subir a qualquer momento sem aviso prévio. Aja rápido e junte-se à <strong class="highlight-red">REVOLUÇÃO</strong>!
-            </p>
-        </div>
-    </section>
-
-    <footer class="py-12 md:py-16 text-center bg-bg-primary border-t border-gray-700/20">
-        <div class="container mx-auto px-4 sm:px-6">
-             <div class="footer-logo mb-4">
-                <i class="fas fa-apple-alt logo-icon"></i>
-                <span class="author-name">FABIO RICCARDO</span>
-            </div>
-            <p class="text-sm" style="color: var(--text-medium);">&copy; <span id="currentYear"></span> A Última Revolução. Todos os direitos reservados.</p>
-            <p class="text-xs mt-2" style="color: var(--text-medium); opacity:0.7;">Invista em você. O futuro é agora.</p>
-        </div>
+    <footer class="text-center py-6 bg-gray-100">
+        <p class="text-gray-500">&copy; <span id="year"></span> Fábio Riccardo. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-        const scrollProgressBar = document.getElementById('scroll-progress-bar');
-        function updateScrollProgress() {
-            if (!scrollProgressBar) return;
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-            scrollProgressBar.style.width = scrollPercentage + '%';
-        }
-        window.addEventListener('scroll', updateScrollProgress);
-        window.addEventListener('resize', updateScrollProgress);
-
-        function startCountdown(durationInHours) {
-            let endTime = new Date().getTime() + durationInHours * 60 * 60 * 1000;
-            const savedEndTimeKey = 'countdownEndTime_ebookAI_vFinalAdjust'; 
-            const savedEndTime = localStorage.getItem(savedEndTimeKey);
-            let timeLeft = 0; 
-
-            if (savedEndTime && parseInt(savedEndTime) > new Date().getTime()) {
-                endTime = parseInt(savedEndTime);
-            } else {
-                localStorage.setItem(savedEndTimeKey, endTime);
+        // Simple Parallax effect for the hero image
+        window.addEventListener('scroll', function() {
+            const heroImage = document.getElementById('hero-image');
+            // Ensure the element exists before trying to access its properties
+            if (heroImage) {
+              const scrollPosition = window.pageYOffset;
+              // Apply transform. The division factor (e.g., 3) controls the speed of the parallax effect.
+              // A larger number means a slower, more subtle effect.
+              heroImage.style.transform = `translateY(${scrollPosition / 4}px)`;
             }
-
-            const countdownElement = document.getElementById('countdown');
-            if (!countdownElement) return; 
-
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
-            const buyButton = document.querySelector('button[onclick="handlePurchase()"]');
-
-            function updateTimer() {
-                const now = new Date().getTime();
-                timeLeft = endTime - now; 
-
-                if (timeLeft <= 0) {
-                    timeLeft = 0; 
-                    const countdownContainer = countdownElement.parentElement; 
-                    if (countdownContainer && countdownContainer.innerHTML.indexOf("OFERTA ENCERRADA") === -1) {
-                         countdownContainer.innerHTML = `<p class='text-xl font-bold p-3 urgent-text'>OFERTA ENCERRADA!</p>`;
-                    }
-                    localStorage.removeItem(savedEndTimeKey);
-                    if(buyButton && !buyButton.disabled) {
-                        buyButton.disabled = true;
-                        buyButton.innerHTML = '<i class="fas fa-times-circle mr-2"></i> OFERTA ESGOTADA';
-                        buyButton.style.backgroundColor = '#555'; 
-                        buyButton.style.color = '#aaa';
-                        buyButton.style.cursor = 'not-allowed';
-                        buyButton.classList.remove('button-cta-main'); 
-                        buyButton.classList.add('bg-gray-600', 'text-gray-400', 'cursor-not-allowed', 'opacity-70');
-                    }
-                }
-
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                if(daysEl) daysEl.textContent = String(days).padStart(2, '0');
-                if(hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-                if(minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-                if(secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
-            }
-
-            updateTimer(); 
-            const timerInterval = setInterval(updateTimer, 1000);
-        }
-
-        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-        const elementObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.05 }); 
-
-        elementsToAnimate.forEach(el => {
-            elementObserver.observe(el);
         });
 
-        const currentYearEl = document.getElementById('currentYear');
-        if (currentYearEl) {
-            currentYearEl.textContent = new Date().getFullYear();
-        }
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - (document.getElementById('scroll-progress-bar-container')?.offsetHeight || 0);
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        function handlePurchase() {
-            const checkoutUrl = 'https://pay.cakto.com.br/qjroea3_393380'; 
-            window.location.href = checkoutUrl; 
-            console.log("Botão de compra clicado. Redirecionando para:", checkoutUrl);
-        }
-
-        function updateStockBar() {
-            const stockBarEl = document.getElementById('stockProgressBar');
-            const stockTextEl = document.getElementById('stockStatusText');
-            if (!stockBarEl || !stockTextEl) return;
-
-            let currentStockPercentage = parseFloat(localStorage.getItem('ebookStockPercentage_vFinalAdjust'));
-
-            if (isNaN(currentStockPercentage) || currentStockPercentage <= 55) { 
-                currentStockPercentage = 60 + Math.random() * 15; 
-            } else {
-                currentStockPercentage -= Math.random() * 0.5 + 0.2; 
-            }
-            
-            if (currentStockPercentage < 5) currentStockPercentage = 5; 
-
-            localStorage.setItem('ebookStockPercentage_vFinalAdjust', currentStockPercentage.toFixed(2));
-            
-            stockBarEl.style.width = currentStockPercentage + '%';
-
-            if (currentStockPercentage <= 15) { 
-                stockTextEl.innerHTML = `🔥 <strong class="urgent-text">CRÍTICO!</strong> Pouquíssimas unidades!`;
-                stockBarEl.style.background = 'var(--accent-red)'; 
-                stockBarEl.style.animation = 'none'; 
-            } else if (currentStockPercentage <= 40) { 
-                stockTextEl.innerHTML = `⏳ <strong class="highlight-red">ESTOQUE BAIXO!</strong> Garanta o seu agora!`; 
-                stockBarEl.style.backgroundImage = 'repeating-linear-gradient(45deg, var(--accent-red), var(--accent-red) 10px, var(--accent-red-darker) 10px, var(--accent-red-darker) 20px)'; 
-                stockBarEl.style.backgroundSize = '28px 28px';
-                stockBarEl.style.animation = 'animatedStripes 2s linear infinite';
-            } else {
-                stockTextEl.innerHTML = `⚠️ Estoque limitado disponível. Aproveite!`;
-                stockBarEl.style.backgroundImage = 'repeating-linear-gradient(45deg, var(--accent-red), var(--accent-red) 10px, var(--accent-red-darker) 10px, var(--accent-red-darker) 20px)';
-                stockBarEl.style.backgroundSize = '28px 28px';
-                stockBarEl.style.animation = 'animatedStripes 2s linear infinite';
-            }
-        }
-
-        const customVideo = document.getElementById('customVideoPlayer');
-        const playPauseButton = document.getElementById('playPauseBtn');
-        const initialMuteOverlay = document.getElementById('initialMuteOverlay');
-        const initialMuteButton = document.getElementById('initialMuteButton');
-        const muteUnmuteCtrlBtn = document.getElementById('muteUnmuteCtrlBtn');
-        const customProgressBar = document.getElementById('customVideoProgressBar');
-        const videoSectionForCustomPlayer = document.getElementById('problem-video-section');
-        const videoPlayerContainer = customVideo ? customVideo.closest('.custom-video-player') : null;
-
-
-        if (customVideo && playPauseButton && customProgressBar && videoSectionForCustomPlayer && initialMuteOverlay && initialMuteButton && muteUnmuteCtrlBtn && videoPlayerContainer) {
-            
-            customVideo.muted = true; 
-            initialMuteOverlay.style.display = 'flex';
-            muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-
-
-            const customVideoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        customVideo.play().catch(error => {
-                            console.log("Autoplay inicial (mutado) bloqueado:", error);
-                        });
-                    } else {
-                        customVideo.pause();
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            customVideoObserver.observe(videoSectionForCustomPlayer);
-            
-            initialMuteButton.addEventListener('click', () => {
-                customVideo.muted = false;
-                initialMuteOverlay.style.display = 'none';
-                muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-                if (customVideo.paused) { 
-                    customVideo.play().catch(e => console.log("Erro ao tocar após desmutar:", e));
-                }
-                videoPlayerContainer.classList.add('controls-visible');
-                 setTimeout(() => {
-                     if(!customVideo.paused) videoPlayerContainer.classList.remove('controls-visible');
-                }, 2000);
-            });
-
-
-            playPauseButton.addEventListener('click', () => {
-                if (initialMuteOverlay.style.display !== 'none') {
-                     initialMuteButton.click(); 
-                } else if (customVideo.paused || customVideo.ended) {
-                    customVideo.play();
-                } else {
-                    customVideo.pause();
-                }
-            });
-            
-            muteUnmuteCtrlBtn.addEventListener('click', () => {
-                if (initialMuteOverlay.style.display !== 'none') {
-                     initialMuteButton.click();
-                } else {
-                    customVideo.muted = !customVideo.muted;
-                }
-            });
-
-
-            customVideo.addEventListener('play', () => {
-                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
-                if (initialMuteOverlay.style.display !== 'none') {
-                     initialMuteOverlay.style.display = 'none';
-                }
-                 setTimeout(() => {
-                     if(!customVideo.paused) videoPlayerContainer.classList.remove('controls-visible');
-                }, 2000);
-            });
-
-            customVideo.addEventListener('pause', () => {
-                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
-                videoPlayerContainer.classList.add('controls-visible');
-            });
-            
-            customVideo.addEventListener('volumechange', () => {
-                 if (customVideo.muted) {
-                    muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                     if (initialMuteOverlay.style.display === 'none' && !customVideo.paused) { 
-                        initialMuteOverlay.style.display = 'flex'; 
-                     }
-                } else {
-                    muteUnmuteCtrlBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-                    if (initialMuteOverlay.style.display !== 'none') {
-                        initialMuteOverlay.style.display = 'none';
-                    }
-                }
-            });
-
-
-            customVideo.addEventListener('loadedmetadata', () => {
-                const initialProgress = 85; 
-                customProgressBar.style.width = initialProgress + '%';
-            });
-            
-            customVideo.addEventListener('timeupdate', () => {
-                if (customVideo.duration) {
-                    const actualPercentage = (customVideo.currentTime / customVideo.duration) * 100;
-                    const visualStart = 85; 
-                    const visualRange = 100 - visualStart; 
-                    
-                    const progressBarPercentage = visualStart + (actualPercentage / 100) * visualRange;
-                    customProgressBar.style.width = progressBarPercentage + '%';
-                }
-            });
-
-            videoPlayerContainer.addEventListener('click', (event) => {
-                if (event.target === customVideo || event.target === videoPlayerContainer) {
-                    if (initialMuteOverlay.style.display !== 'none') {
-                        return; 
-                    }
-                    videoPlayerContainer.classList.toggle('controls-visible');
-                     if(!customVideo.paused && videoPlayerContainer.classList.contains('controls-visible')){
-                         setTimeout(() => {
-                            videoPlayerContainer.classList.remove('controls-visible');
-                        }, 2000);
-                     }
-                }
-            });
-        }
-        
-        window.onload = function() {
-            startCountdown(8); 
-            updateScrollProgress(); 
-            updateStockBar(); 
-            setInterval(updateStockBar, 60000); 
-
-            elementsToAnimate.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {
-                    el.classList.add('is-visible');
-                }
-            });
-        };
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
 </body>

@@ -27,8 +27,8 @@
     <header class="header">
         <div class="header-inner">
             <div class="logo">
+                <div class="logo-tagline">O Filmmaker</div>
                 <div class="logo-name">Fábio Ricardo</div>
-                <div class="logo-tagline">O Filmmaker®</div>
             </div>
             <button class="menu-btn" id="menuBtn" aria-label="Menu">
                 <span></span>
@@ -39,6 +39,7 @@
             <a href="#home">Início</a>
             <a href="#work">Projetos</a>
             <a href="#expertise">Sobre</a>
+            <a href="#portfolio">Portfolio</a>
             <a href="#contact">Contato</a>
         </nav>
     </header>
@@ -95,7 +96,7 @@
                 </div>
 
                 <div class="project">
-                    <div class="project-img" style="background: url('ipace-blog.jpg') center/cover;"></div>
+                    <div class="project-img" style="background: url('ipace-blog-site 1.jpg') center/cover;"></div>
                     <div class="project-content">
                         <h3>Plataformas para ONGs</h3>
                         <p>Desenvolvimento de sites institucionais e sistemas personalizados para organizações sem fins lucrativos.</p>
@@ -142,10 +143,87 @@
             </div>
         </section>
 
-        <section id="contact" class="contact">
+        <section id="portfolio" class="portfolio">
             <div class="container">
                 <div class="section-header">
                     <span class="number">03</span>
+                    <h2>Sites & Plataformas</h2>
+                </div>
+
+                <div class="portfolio-carousel">
+                    <!-- Projeto 1 -->
+                    <div class="carousel-item">
+                        <h3 class="carousel-title">OSC IPACE</h3>
+                        <p class="carousel-subtitle">Instituto Pangea de Ação Cultural Esportiva - Plataforma web completa com sistema de inscrições, blog customizado e painel administrativo desenvolvido do zero, sem dependência de WordPress ou Blogspot</p>
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" onclick="changeSlide(0, -1)">‹</button>
+                            <div class="carousel-images">
+                                <img src="ipace-blog-site 1.jpg" alt="IPACE - Home" class="active">
+                                <img src="ipace-blog-site 2.jpg" alt="IPACE - Sobre">
+                                <img src="ipace-blog-site 3.jpg" alt="IPACE - Projetos">
+                                <img src="ipace-blog-site 4.jpg" alt="IPACE - Contato">
+                                <img src="ipace-blog post.jpg" alt="IPACE - Blog">
+                                <img src="painel.jpg" alt="IPACE - Painel Admin">
+                            </div>
+                            <button class="carousel-btn next" onclick="changeSlide(0, 1)">›</button>
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="goToSlide(0, 0)"></span>
+                            <span class="dot" onclick="goToSlide(0, 1)"></span>
+                            <span class="dot" onclick="goToSlide(0, 2)"></span>
+                            <span class="dot" onclick="goToSlide(0, 3)"></span>
+                            <span class="dot" onclick="goToSlide(0, 4)"></span>
+                            <span class="dot" onclick="goToSlide(0, 5)"></span>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2 -->
+                    <div class="carousel-item">
+                        <h3 class="carousel-title">Senha Mestra</h3>
+                        <p class="carousel-subtitle">Sistema de gerenciamento de senhas empresarial com servidor embarcado próprio. Solução segura para armazenamento centralizado de credenciais corporativas, garantindo controle total e eliminando riscos de perda de acessos críticos do negócio</p>
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" onclick="changeSlide(1, -1)">‹</button>
+                            <div class="carousel-images">
+                                <img src="senhamestra1.jpg" alt="Senha Mestra - Dashboard" class="active">
+                                <img src="senhamestra2.jpg" alt="Senha Mestra - Gerenciamento">
+                                <img src="senhamestra3.jpg" alt="Senha Mestra - Segurança">
+                            </div>
+                            <button class="carousel-btn next" onclick="changeSlide(1, 1)">›</button>
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="goToSlide(1, 0)"></span>
+                            <span class="dot" onclick="goToSlide(1, 1)"></span>
+                            <span class="dot" onclick="goToSlide(1, 2)"></span>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3 -->
+                    <div class="carousel-item">
+                        <h3 class="carousel-title">Flow Workspace</h3>
+                        <p class="carousel-subtitle">Gerenciador de tarefas white-label totalmente personalizável. Plataforma colaborativa em tempo real com sistema drag-and-drop para organização de demandas, gerenciamento de projetos e compartilhamento instantâneo entre equipes</p>
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" onclick="changeSlide(2, -1)">‹</button>
+                            <div class="carousel-images">
+                                <img src="flow1.jpg" alt="Flow Workspace - Interface Principal" class="active">
+                                <img src="flow2.jpg" alt="Flow Workspace - Gerenciamento de Tarefas">
+                                <img src="flow3.jpg" alt="Flow Workspace - Dashboard">
+                            </div>
+                            <button class="carousel-btn next" onclick="changeSlide(2, 1)">›</button>
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="goToSlide(2, 0)"></span>
+                            <span class="dot" onclick="goToSlide(2, 1)"></span>
+                            <span class="dot" onclick="goToSlide(2, 2)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="number">04</span>
                     <h2>Vamos Trabalhar Juntos</h2>
                 </div>
 

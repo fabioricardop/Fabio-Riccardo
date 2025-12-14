@@ -67,3 +67,69 @@ if (form) {
         form.reset();
     });
 }
+
+// Carousel Portfolio
+function changeSlide(carouselIndex, direction) {
+    const carousels = document.querySelectorAll('.carousel-item');
+    const carousel = carousels[carouselIndex];
+    const images = carousel.querySelectorAll('.carousel-images img');
+    const dots = carousel.querySelectorAll('.dot');
+    
+    let currentIndex = 0;
+    images.forEach((img, index) => {
+        if (img.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+    
+    images[currentIndex].classList.remove('active');
+    dots[currentIndex].classList.remove('active');
+    
+    let newIndex = currentIndex + direction;
+    if (newIndex >= images.length) newIndex = 0;
+    if (newIndex < 0) newIndex = images.length - 1;
+    
+    images[newIndex].classList.add('active');
+    dots[newIndex].classList.add('active');
+}
+
+function goToSlide(carouselIndex, slideIndex) {
+    const carousels = document.querySelectorAll('.carousel-item');
+    const carousel = carousels[carouselIndex];
+    const images = carousel.querySelectorAll('.carousel-images img');
+    const dots = carousel.querySelectorAll('.dot');
+    
+    images.forEach(img => img.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    images[slideIndex].classList.add('active');
+    dots[slideIndex].classList.add('active');
+}
+
+// Touch/Swipe support for carousel
+document.addEventListener('DOMContentLoaded', () => {
+    const carouselContainers = document.querySelectorAll('.carousel-container');
+    
+    carouselContainers.forEach((container, carouselIndex) => {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe(carouselIndex);
+        });
+        
+        function handleSwipe(index) {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(index, 1); // Swipe left
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(index, -1); // Swipe right
+            }
+        }
+    });
+});

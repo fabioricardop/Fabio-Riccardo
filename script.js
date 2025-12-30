@@ -133,3 +133,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// WhatsApp Widget Logic
+const whatsappToggle = document.getElementById('whatsapp-toggle');
+const whatsappChatBox = document.getElementById('whatsapp-chat-box');
+const whatsappClose = document.getElementById('whatsapp-close');
+
+function toggleChat() {
+    whatsappChatBox.classList.toggle('active');
+}
+
+if (whatsappToggle) {
+    whatsappToggle.addEventListener('click', toggleChat);
+}
+
+if (whatsappClose) {
+    whatsappClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        whatsappChatBox.classList.remove('active');
+    });
+}
+
+// Auto open after 5 seconds
+setTimeout(() => {
+    if (whatsappChatBox && !whatsappChatBox.classList.contains('active')) {
+        whatsappChatBox.classList.add('active');
+    }
+}, 5000);
